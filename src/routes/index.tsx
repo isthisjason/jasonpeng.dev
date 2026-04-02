@@ -332,7 +332,6 @@ function HomePage() {
           <div className="font-headline text-lg font-bold text-white">
             Jason Peng
           </div>
-          <div>© {new Date().getFullYear()} Jason Peng</div>
         </div>
       </footer>
     </>
