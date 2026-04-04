@@ -2,26 +2,26 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-label: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: #000000;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #79849a;
-  --color-secondary-container: #d5e3fd;
-  --color-on-secondary-fixed: #0d1c2f;
-  --color-secondary-fixed-dim: #b9c7e0;
-  --color-surface: #f7f9fb;
-  --color-surface-container: #eceef0;
-  --color-surface-container-low: #f2f4f6;
+  --color-primary: #206393;
+  --color-on-primary: #f4f8ff;
+  --color-on-primary-container: #6d8395;
+  --color-secondary-container: #d4e4f6;
+  --color-on-secondary-fixed: #31414f;
+  --color-secondary-fixed-dim: #dbe4e7;
+  --color-surface: #f8f9fa;
+  --color-surface-container: #eaeff1;
+  --color-surface-container-low: #f1f4f6;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-high: #e6e8ea;
-  --color-surface-container-highest: #e0e3e5;
-  --color-on-surface: #191c1e;
-  --color-on-surface-variant: #45464d;
-  --color-tertiary-container: #001e2f;
-  --color-on-tertiary: #ffffff;
+  --color-surface-container-high: #e3e9ec;
+  --color-surface-container-highest: #dbe4e7;
+  --color-on-surface: #2b3437;
+  --color-on-surface-variant: #586064;
+  --color-tertiary-container: #d4f8f7;
+  --color-on-tertiary: #2d4d4d;
 }
 
 * {
@@ -36,9 +36,9 @@ body,
 
 body {
   margin: 0;
-  color: #191c1e;
+  color: #2b3437;
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  background-color: #f7f9fb;
+  background-color: #f8f9fa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -50,14 +50,14 @@ body {
 }
 
 .top-nav-link {
-  color: #64748b;
-  font-family: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: #586064;
+  font-family: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
   text-decoration: none;
   transition: color 180ms ease;
 }
 
 .top-nav-link:hover {
-  color: #1e293b;
+  color: #206393;
 }
 
 .footer-link {
