@@ -13,7 +13,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Precision Scholar | Portfolio',
+        title: 'Jason Peng | Portfolio',
       },
       {
         name: 'description',
@@ -32,6 +32,11 @@ export const Route = createRootRoute({
       },
       {
         rel: 'icon',
+        href: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        rel: 'alternate icon',
         href: '/favicon.ico',
       },
     ],
