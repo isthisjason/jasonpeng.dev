@@ -43,12 +43,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.material-symbols-outlined {
-  font-family: "Material Symbols Outlined", sans-serif;
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  line-height: 1;
-}
-
 .top-nav-link {
   color: #586064;
   font-family: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
