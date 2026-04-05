@@ -1,7 +1,5 @@
 import {
   ArrowRight,
-  Bot,
-  Sparkles,
   UserRound,
 } from 'lucide-react'
 
@@ -376,42 +374,6 @@ export function HomePage() {
           </div>
         </section>
       </main>
-
-      <div className="pointer-events-none fixed right-5 bottom-5 z-40 hidden w-[min(22rem,calc(100vw-2rem))] md:block">
-        <div className="rounded-[1.6rem] border border-slate-800 bg-slate-950/96 p-3 text-slate-100 shadow-[0_30px_80px_-28px_rgba(15,23,42,0.7)] backdrop-blur">
-          <div className="mb-3 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-300/12 text-cyan-200">
-              <Bot className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-sm font-semibold text-white">
-                Portfolio Assistant
-              </div>
-              <div className="text-xs text-slate-400">
-                Floating widget concept
-              </div>
-            </div>
-            <div className="ml-auto rounded-full bg-emerald-400/12 px-2.5 py-1 text-[11px] font-medium text-emerald-200">
-              Online
-            </div>
-          </div>
-
-          <div className="space-y-2.5">
-            <div className="max-w-[85%] rounded-2xl bg-white/7 px-3 py-2.5 text-sm text-slate-200">
-              What kind of engineer is Jason?
-            </div>
-            <div className="max-w-[90%] rounded-2xl bg-cyan-300/10 px-3 py-2.5 text-sm leading-relaxed text-cyan-50">
-              Full-stack focused, with strong attention to deployment
-              readiness, security hardening, and clean product delivery.
-            </div>
-          </div>
-
-          <div className="mt-3 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-400">
-            Ask about experience, projects, or stack
-            <Sparkles className="ml-auto h-4 w-4 text-cyan-300" />
-          </div>
-        </div>
-      </div>
 
       <footer className="w-full bg-slate-950 py-6">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-8 text-sm text-slate-300 md:flex-row">
