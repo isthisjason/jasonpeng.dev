@@ -12,6 +12,7 @@ dist-ssr
 __unconfig*
 todos.json
 .omc/*
+.vscode/mcp.json
 
 .dev.vars*
 !.dev.vars.example
