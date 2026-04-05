@@ -1,4 +1,4 @@
-const STYLE_TEXT = ":host {\n  all: initial;\n}\n\n.pcw-root,\n.pcw-root * {\n  box-sizing: border-box;\n  font-family: \"IBM Plex Sans\", \"Segoe UI\", sans-serif;\n}\n\n.pcw-root {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n  z-index: 2147483000;\n  color: #101828;\n}\n\n.pcw-launcher {\n  width: 60px;\n  height: 60px;\n  border: 0;\n  border-radius: 999px;\n  cursor: pointer;\n  background:\n    radial-gradient(circle at top, rgba(255, 255, 255, 0.28), transparent 40%),\n    linear-gradient(135deg, #0f172a 0%, #0b3b66 48%, #0e7490 100%);\n  color: #ffffff;\n  box-shadow:\n    0 18px 40px rgba(2, 6, 23, 0.28),\n    0 6px 14px rgba(14, 116, 144, 0.3);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  transition: transform 160ms ease, box-shadow 160ms ease;\n}\n\n.pcw-launcher:hover {\n  transform: translateY(-2px);\n  box-shadow:\n    0 22px 50px rgba(2, 6, 23, 0.3),\n    0 8px 18px rgba(14, 116, 144, 0.33);\n}\n\n.pcw-launcher[aria-expanded=\"true\"] {\n  background:\n    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 40%),\n    linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);\n  transform: rotate(90deg);\n}\n\n.pcw-launcher[aria-expanded=\"true\"]:hover {\n  transform: rotate(90deg) translateY(-2px);\n}\n\n.pcw-launcher:focus-visible,\n.pcw-close:focus-visible,\n.pcw-clear:focus-visible,\n.pcw-retry:focus-visible,\n.pcw-send:focus-visible,\n.pcw-input:focus-visible {\n  outline: 2px solid #38bdf8;\n  outline-offset: 2px;\n}\n\n.pcw-panel {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  right: 0;\n  width: min(380px, calc(100vw - 24px));\n  height: min(620px, calc(100vh - 96px));\n  border-radius: 24px;\n  overflow: hidden;\n  background:\n    linear-gradient(180deg, rgba(240, 249, 255, 0.95), rgba(255, 255, 255, 0.98));\n  border: 1px solid rgba(148, 163, 184, 0.25);\n  box-shadow:\n    0 30px 80px rgba(15, 23, 42, 0.24),\n    0 8px 20px rgba(14, 116, 144, 0.18);\n  display: flex;\n  flex-direction: column;\n  backdrop-filter: blur(16px);\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  transform: translateY(14px) scale(0.97);\n  transform-origin: bottom right;\n  transition:\n    opacity 220ms ease,\n    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),\n    visibility 0s linear 220ms;\n}\n\n.pcw-panel.is-open {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  transform: translateY(0) scale(1);\n  transition:\n    opacity 220ms ease,\n    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),\n    visibility 0s linear 0s;\n}\n\n.pcw-header {\n  padding: 12px 14px 10px;\n  background:\n    linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(12, 74, 110, 0.96));\n  color: #f8fafc;\n}\n\n.pcw-header-row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 12px;\n}\n\n.pcw-header-actions {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.pcw-eyebrow {\n  margin: 0 0 3px;\n  font-size: 10px;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  opacity: 0.6;\n}\n\n.pcw-title {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 600;\n}\n\n.pcw-subtitle {\n  margin: 3px 0 0;\n  font-size: 12px;\n  line-height: 1.35;\n  color: rgba(241, 245, 249, 0.75);\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 220px;\n}\n\n.pcw-close {\n  border: 0;\n  background: rgba(255, 255, 255, 0.12);\n  color: inherit;\n  width: 34px;\n  height: 34px;\n  border-radius: 999px;\n  cursor: pointer;\n}\n\n.pcw-clear {\n  border: 1px solid rgba(241, 245, 249, 0.3);\n  background: rgba(255, 255, 255, 0.1);\n  color: #f8fafc;\n  min-height: 34px;\n  padding: 0 10px;\n  border-radius: 999px;\n  font-size: 12px;\n  cursor: pointer;\n}\n\n.pcw-body {\n  padding: 10px 12px 12px;\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  gap: 8px;\n  flex: 1;\n}\n\n.pcw-messages {\n  flex: 1;\n  min-height: 0;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 7px;\n  padding-right: 4px;\n}\n\n.pcw-message {\n  max-width: 80%;\n  padding: 8px 11px;\n  border-radius: 14px;\n  font-size: 13px;\n  line-height: 1.5;\n  white-space: pre-wrap;\n}\n\n.pcw-message.assistant {\n  align-self: flex-start;\n  background: #eff6ff;\n  color: #172554;\n  border-bottom-left-radius: 8px;\n}\n\n.pcw-message.assistant.fallback {\n  background: #fff7ed;\n  color: #9a3412;\n}\n\n.pcw-message.assistant.error {\n  background: #fef2f2;\n  color: #991b1b;\n}\n\n.pcw-message.user {\n  align-self: flex-end;\n  background: #0f172a;\n  color: #f8fafc;\n  border-bottom-right-radius: 8px;\n}\n\n.pcw-message-note {\n  margin-top: 8px;\n  font-size: 11px;\n  line-height: 1.35;\n  opacity: 0.72;\n}\n\n.pcw-message.typing {\n  min-width: 64px;\n}\n\n.pcw-dots {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n}\n\n.pcw-dots span {\n  width: 6px;\n  height: 6px;\n  border-radius: 999px;\n  background: currentColor;\n  opacity: 0.45;\n  animation: pcw-pulse 0.9s infinite ease-in-out;\n}\n\n.pcw-dots span:nth-child(2) {\n  animation-delay: 0.15s;\n}\n\n.pcw-dots span:nth-child(3) {\n  animation-delay: 0.3s;\n}\n\n.pcw-starters {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n\n.pcw-starter {\n  border: 1px solid rgba(14, 116, 144, 0.18);\n  background: rgba(14, 116, 144, 0.06);\n  color: #0f172a;\n  border-radius: 999px;\n  font-size: 12px;\n  padding: 6px 11px;\n  cursor: pointer;\n  transition: background 140ms ease, border-color 140ms ease;\n}\n\n.pcw-starter:hover {\n  background: rgba(14, 116, 144, 0.12);\n  border-color: rgba(14, 116, 144, 0.3);\n}\n\n.pcw-form {\n  display: grid;\n  grid-template-columns: 1fr auto;\n  gap: 10px;\n  align-items: end;\n}\n\n.pcw-visually-hidden {\n  border: 0;\n  clip: rect(0 0 0 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px;\n}\n\n.pcw-input {\n  border: 1px solid rgba(148, 163, 184, 0.45);\n  background: rgba(255, 255, 255, 0.9);\n  border-radius: 14px;\n  padding: 10px 12px;\n  color: #0f172a;\n  resize: none;\n  min-height: 44px;\n  max-height: 120px;\n  font-size: 13px;\n  line-height: 1.45;\n  transition: border-color 160ms ease;\n}\n\n.pcw-input:focus {\n  border-color: rgba(14, 116, 144, 0.5);\n}\n\n.pcw-send {\n  border: 0;\n  background: linear-gradient(135deg, #0f172a, #0e7490);\n  color: #ffffff;\n  min-width: 72px;\n  height: 44px;\n  border-radius: 14px;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: 600;\n  transition: opacity 160ms ease;\n}\n\n.pcw-send:disabled,\n.pcw-input:disabled,\n.pcw-clear:disabled,\n.pcw-retry:disabled {\n  cursor: not-allowed;\n  opacity: 0.62;\n}\n\n.pcw-controls {\n  display: flex;\n  justify-content: flex-start;\n}\n\n.pcw-retry {\n  border: 1px solid rgba(15, 23, 42, 0.2);\n  background: rgba(248, 250, 252, 0.95);\n  color: #0f172a;\n  border-radius: 999px;\n  min-height: 28px;\n  padding: 0 10px;\n  font-size: 11px;\n  font-weight: 600;\n  cursor: pointer;\n}\n\n.pcw-status {\n  font-size: 11px;\n  color: #475467;\n  min-height: 15px;\n}\n\n.pcw-footnote {\n  font-size: 10px;\n  line-height: 1.4;\n  color: #94a3b8;\n}\n\n@keyframes pcw-pulse {\n  0%,\n  80%,\n  100% {\n    opacity: 0.35;\n    transform: translateY(0);\n  }\n  40% {\n    opacity: 0.9;\n    transform: translateY(-1px);\n  }\n}\n\n@media (max-width: 640px) {\n  .pcw-root {\n    right: 12px;\n    bottom: 12px;\n    left: 12px;\n  }\n\n  .pcw-panel {\n    width: 100%;\n    height: min(82vh, 680px);\n    border-radius: 20px;\n  }\n\n  .pcw-launcher {\n    margin-left: auto;\n    display: flex;\n  }\n\n  .pcw-header {\n    padding: 10px 12px 8px;\n  }\n\n  .pcw-body {\n    padding: 8px 10px 10px;\n  }\n\n  .pcw-form {\n    grid-template-columns: 1fr;\n  }\n\n  .pcw-send {\n    width: 100%;\n  }\n}\n";
+const STYLE_TEXT = ":host {\n  all: initial;\n}\n\n.pcw-root,\n.pcw-root * {\n  box-sizing: border-box;\n  font-family: \"IBM Plex Sans\", \"Segoe UI\", sans-serif;\n}\n\n.pcw-root {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n  z-index: 2147483000;\n  color: #101828;\n}\n\n.pcw-launcher {\n  width: 60px;\n  height: 60px;\n  border: 0;\n  border-radius: 999px;\n  cursor: pointer;\n  background:\n    radial-gradient(circle at top, rgba(255, 255, 255, 0.28), transparent 40%),\n    linear-gradient(135deg, #0f172a 0%, #0b3b66 48%, #0e7490 100%);\n  color: #ffffff;\n  box-shadow:\n    0 18px 40px rgba(2, 6, 23, 0.28),\n    0 6px 14px rgba(14, 116, 144, 0.3);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  transition: transform 160ms ease, box-shadow 160ms ease;\n}\n\n.pcw-launcher:hover {\n  transform: translateY(-2px);\n  box-shadow:\n    0 22px 50px rgba(2, 6, 23, 0.3),\n    0 8px 18px rgba(14, 116, 144, 0.33);\n}\n\n.pcw-launcher[aria-expanded=\"true\"] {\n  background:\n    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 40%),\n    linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);\n  transform: rotate(90deg);\n}\n\n.pcw-launcher[aria-expanded=\"true\"]:hover {\n  transform: rotate(90deg) translateY(-2px);\n}\n\n.pcw-launcher:focus-visible,\n.pcw-close:focus-visible,\n.pcw-clear:focus-visible,\n.pcw-retry:focus-visible,\n.pcw-send:focus-visible,\n.pcw-input:focus-visible {\n  outline: 2px solid #38bdf8;\n  outline-offset: 2px;\n}\n\n.pcw-panel {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  right: 0;\n  width: min(380px, calc(100vw - 24px));\n  height: min(620px, calc(100vh - 96px));\n  border-radius: 24px;\n  overflow: hidden;\n  background:\n    linear-gradient(180deg, rgba(240, 249, 255, 0.95), rgba(255, 255, 255, 0.98));\n  border: 1px solid rgba(148, 163, 184, 0.25);\n  box-shadow:\n    0 30px 80px rgba(15, 23, 42, 0.24),\n    0 8px 20px rgba(14, 116, 144, 0.18);\n  display: flex;\n  flex-direction: column;\n  backdrop-filter: blur(16px);\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  transform: translateY(14px) scale(0.97);\n  transform-origin: bottom right;\n  transition:\n    opacity 220ms ease,\n    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),\n    visibility 0s linear 220ms;\n}\n\n.pcw-panel.is-open {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  transform: translateY(0) scale(1);\n  transition:\n    opacity 220ms ease,\n    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),\n    visibility 0s linear 0s;\n}\n\n.pcw-header {\n  padding: 12px 14px 10px;\n  background:\n    linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(12, 74, 110, 0.96));\n  color: #f8fafc;\n}\n\n.pcw-header-row {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 12px;\n}\n\n.pcw-header-actions {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.pcw-eyebrow {\n  margin: 0 0 3px;\n  font-size: 10px;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  opacity: 0.6;\n}\n\n.pcw-title {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 600;\n}\n\n.pcw-subtitle {\n  margin: 3px 0 0;\n  font-size: 12px;\n  line-height: 1.35;\n  color: rgba(241, 245, 249, 0.75);\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 220px;\n}\n\n.pcw-close {\n  border: 0;\n  background: rgba(255, 255, 255, 0.12);\n  color: inherit;\n  width: 34px;\n  height: 34px;\n  border-radius: 999px;\n  cursor: pointer;\n}\n\n.pcw-clear {\n  border: 1px solid rgba(241, 245, 249, 0.3);\n  background: rgba(255, 255, 255, 0.1);\n  color: #f8fafc;\n  min-height: 34px;\n  padding: 0 10px;\n  border-radius: 999px;\n  font-size: 12px;\n  cursor: pointer;\n}\n\n.pcw-body {\n  padding: 10px 12px 12px;\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  gap: 8px;\n  flex: 1;\n}\n\n.pcw-messages {\n  flex: 1;\n  min-height: 0;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 7px;\n  padding-right: 4px;\n}\n\n.pcw-message {\n  max-width: 72%;\n  padding: 4px 9px;\n  border-radius: 10px;\n  font-size: 13px;\n  line-height: 1.35;\n}\n\n.pcw-message-text {\n  white-space: pre-wrap;\n}\n\n.pcw-message.assistant {\n  align-self: flex-start;\n  background: #eff6ff;\n  color: #172554;\n  border-bottom-left-radius: 8px;\n}\n\n.pcw-message.assistant.fallback {\n  background: #fff7ed;\n  color: #9a3412;\n}\n\n.pcw-message.assistant.error {\n  background: #fef2f2;\n  color: #991b1b;\n}\n\n.pcw-message.user {\n  align-self: flex-end;\n  background: #0f172a;\n  color: #f8fafc;\n  border-bottom-right-radius: 8px;\n}\n\n.pcw-message-note {\n  margin-top: 8px;\n  font-size: 11px;\n  line-height: 1.35;\n  opacity: 0.72;\n}\n\n.pcw-message.typing {\n  min-width: 64px;\n}\n\n.pcw-dots {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n}\n\n.pcw-dots span {\n  width: 6px;\n  height: 6px;\n  border-radius: 999px;\n  background: currentColor;\n  opacity: 0.45;\n  animation: pcw-pulse 0.9s infinite ease-in-out;\n}\n\n.pcw-dots span:nth-child(2) {\n  animation-delay: 0.15s;\n}\n\n.pcw-dots span:nth-child(3) {\n  animation-delay: 0.3s;\n}\n\n.pcw-starters-inline {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  padding: 4px 0 2px;\n  align-self: flex-start;\n  transition: opacity 200ms ease, transform 200ms ease;\n}\n\n.pcw-starters-inline.is-hiding {\n  opacity: 0;\n  transform: translateY(4px);\n  pointer-events: none;\n}\n\n.pcw-starter {\n  border: 1px solid rgba(14, 116, 144, 0.22);\n  background: rgba(14, 116, 144, 0.07);\n  color: #0f172a;\n  border-radius: 999px;\n  font-size: 12px;\n  padding: 5px 11px;\n  cursor: pointer;\n  transition: background 140ms ease, border-color 140ms ease;\n  white-space: nowrap;\n}\n\n.pcw-starter:hover {\n  background: rgba(14, 116, 144, 0.13);\n  border-color: rgba(14, 116, 144, 0.35);\n}\n\n.pcw-form {\n  display: grid;\n  grid-template-columns: 1fr auto;\n  gap: 10px;\n  align-items: end;\n}\n\n.pcw-visually-hidden {\n  border: 0;\n  clip: rect(0 0 0 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px;\n}\n\n.pcw-input {\n  border: 1px solid rgba(148, 163, 184, 0.45);\n  background: rgba(255, 255, 255, 0.9);\n  border-radius: 14px;\n  padding: 10px 12px;\n  color: #0f172a;\n  resize: none;\n  min-height: 44px;\n  max-height: 120px;\n  font-size: 13px;\n  line-height: 1.45;\n  transition: border-color 160ms ease;\n}\n\n.pcw-input:focus {\n  border-color: rgba(14, 116, 144, 0.5);\n}\n\n.pcw-send {\n  border: 0;\n  background: linear-gradient(135deg, #0f172a, #0e7490);\n  color: #ffffff;\n  min-width: 72px;\n  height: 44px;\n  border-radius: 14px;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: 600;\n  transition: opacity 160ms ease;\n}\n\n.pcw-send:disabled,\n.pcw-input:disabled,\n.pcw-clear:disabled,\n.pcw-retry:disabled {\n  cursor: not-allowed;\n  opacity: 0.62;\n}\n\n.pcw-controls {\n  display: flex;\n  justify-content: flex-start;\n}\n\n.pcw-retry {\n  border: 1px solid rgba(15, 23, 42, 0.2);\n  background: rgba(248, 250, 252, 0.95);\n  color: #0f172a;\n  border-radius: 999px;\n  min-height: 28px;\n  padding: 0 10px;\n  font-size: 11px;\n  font-weight: 600;\n  cursor: pointer;\n}\n\n.pcw-status {\n  font-size: 11px;\n  color: #475467;\n  min-height: 15px;\n}\n\n.pcw-footnote {\n  font-size: 10px;\n  line-height: 1.4;\n  color: #94a3b8;\n}\n\n@keyframes pcw-pulse {\n  0%,\n  80%,\n  100% {\n    opacity: 0.35;\n    transform: translateY(0);\n  }\n  40% {\n    opacity: 0.9;\n    transform: translateY(-1px);\n  }\n}\n\n@media (max-width: 640px) {\n  .pcw-root {\n    right: 12px;\n    bottom: 12px;\n    left: 12px;\n  }\n\n  .pcw-panel {\n    width: 100%;\n    height: min(82vh, 680px);\n    border-radius: 20px;\n  }\n\n  .pcw-launcher {\n    margin-left: auto;\n    display: flex;\n  }\n\n  .pcw-header {\n    padding: 10px 12px 8px;\n  }\n\n  .pcw-body {\n    padding: 8px 10px 10px;\n  }\n\n  .pcw-form {\n    grid-template-columns: 1fr;\n  }\n\n  .pcw-send {\n    width: 100%;\n  }\n}\n";
 const EMBED_CONTRACT_VERSION = "1.0.0";
 const WIDGET_GLOBAL_NAME = "PortfolioChatbotWidget";
 const CONFIG_GLOBAL_NAME = "PortfolioChatbotConfig";
@@ -31,6 +31,9 @@ const state = {
   reconnectNotified: false,
   lastUserMessage: "",
   previousFocusedElement: null,
+  startersVisible: true,
+  animateNextAssistant: false,
+  activeTyping: null,
   elements: {},
   config: { ...DEFAULT_CONFIG },
   conversation: [],
@@ -173,13 +176,51 @@ function autoResizeTextarea(textarea) {
   textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
 }
 
+function typeIntoElement(el, text) {
+  if (state.activeTyping) {
+    state.activeTyping.cancelled = true;
+  }
+  const ctrl = { cancelled: false };
+  state.activeTyping = ctrl;
+
+  // 20ms per tick; for long responses batch chars to stay under ~4s total
+  const MS_PER_TICK = 20;
+  const MAX_DURATION_MS = 4000;
+  const charsPerTick = Math.max(1, Math.ceil(text.length / (MAX_DURATION_MS / MS_PER_TICK)));
+  let i = 0;
+  el.textContent = "";
+
+  function step() {
+    if (ctrl.cancelled || !el.isConnected) return;
+    i = Math.min(i + charsPerTick, text.length);
+    el.textContent = text.slice(0, i);
+    state.elements.messages.scrollTop = state.elements.messages.scrollHeight;
+    if (i < text.length) {
+      setTimeout(step, MS_PER_TICK);
+    } else {
+      state.activeTyping = null;
+    }
+  }
+  setTimeout(step, MS_PER_TICK);
+}
+
 function renderMessages() {
   const { messages } = state.elements;
-  const conversationHtml = state.conversation
+
+  const shouldAnimate =
+    state.animateNextAssistant &&
+    state.conversation.length > 0 &&
+    state.conversation[state.conversation.length - 1].role === "assistant";
+
+  const visibleConversation = shouldAnimate
+    ? state.conversation.slice(0, -1)
+    : state.conversation;
+
+  const conversationHtml = visibleConversation
     .map(
       (message) => `
         <div class="pcw-message ${message.role} ${message.kind || "default"}">
-          <div>${escapeHtml(message.content)}</div>
+          <div class="pcw-message-text">${escapeHtml(message.content)}</div>
           ${
             message.note
               ? `<div class="pcw-message-note">${escapeHtml(message.note)}</div>`
@@ -189,6 +230,16 @@ function renderMessages() {
       `,
     )
     .join("");
+
+  const animatedMsgHtml = shouldAnimate
+    ? (() => {
+        const msg = state.conversation[state.conversation.length - 1];
+        return `<div class="pcw-message ${msg.role} ${msg.kind || "default"} pcw-typing-target">
+          <div class="pcw-message-text"></div>
+          ${msg.note ? `<div class="pcw-message-note">${escapeHtml(msg.note)}</div>` : ""}
+        </div>`;
+      })()
+    : "";
 
   const pendingHtml = state.pending
     ? `
@@ -200,9 +251,27 @@ function renderMessages() {
     `
     : "";
 
-  messages.innerHTML = `${conversationHtml}${pendingHtml}`;
+  const startersHtml =
+    state.startersVisible && state.conversation.length <= 1 && !state.pending
+      ? `<div class="pcw-starters-inline">${state.config.starterQuestions
+          .map(
+            (q) =>
+              `<button class="pcw-starter" type="button" data-starter="${escapeHtml(q)}">${escapeHtml(q)}</button>`,
+          )
+          .join("")}</div>`
+      : "";
 
+  messages.innerHTML = `${conversationHtml}${animatedMsgHtml}${pendingHtml}${startersHtml}`;
   messages.scrollTop = messages.scrollHeight;
+
+  if (shouldAnimate) {
+    state.animateNextAssistant = false;
+    const target = messages.querySelector(".pcw-typing-target div");
+    if (target) {
+      const msg = state.conversation[state.conversation.length - 1];
+      typeIntoElement(target, msg.content);
+    }
+  }
 }
 
 function setStatus(message = "") {
@@ -290,6 +359,7 @@ function clearConversation() {
     },
   ];
   state.lastUserMessage = "";
+  state.startersVisible = true;
   setStatus("Conversation cleared");
   setPending(false);
   renderMessages();
@@ -388,7 +458,7 @@ async function submitMessage(content) {
         reply ||
         "I couldn't find a grounded answer in the portfolio context yet.",
     });
-    renderMessages();
+    state.animateNextAssistant = true;
     if (state.hasConnectionIssue) {
       state.hasConnectionIssue = false;
       state.reconnectNotified = true;
@@ -413,7 +483,7 @@ async function submitMessage(content) {
         ? `I couldn't complete that request. ${detail}`
         : "I couldn't reach the portfolio assistant just now. You can retry the last question or wait a moment and try again.",
     });
-    renderMessages();
+    state.animateNextAssistant = true;
     setStatus("Connection issue. Retry is available.");
     trackEvent("error", {
       statusCode: 0,
@@ -431,7 +501,7 @@ function attachEventHandlers() {
     retry,
     form,
     input,
-    starters,
+    messages,
   } = state.elements;
 
   launcher.addEventListener("click", () => setOpen(!state.open));
@@ -452,7 +522,7 @@ function attachEventHandlers() {
     }
   });
 
-  starters.addEventListener("click", async (event) => {
+  messages.addEventListener("click", async (event) => {
     const button = event.target.closest("[data-starter]");
 
     if (!button) {
@@ -460,6 +530,14 @@ function attachEventHandlers() {
     }
 
     const value = button.getAttribute("data-starter") || "";
+
+    const startersEl = messages.querySelector(".pcw-starters-inline");
+    if (startersEl) {
+      startersEl.classList.add("is-hiding");
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+    state.startersVisible = false;
+
     if (!state.open) {
       setOpen(true);
     }
@@ -470,16 +548,6 @@ function attachEventHandlers() {
 }
 
 function createMarkup(config) {
-  const starterButtons = config.starterQuestions
-    .map(
-      (question) => `
-        <button class="pcw-starter" type="button" data-starter="${escapeHtml(question)}">
-          ${escapeHtml(question)}
-        </button>
-      `,
-    )
-    .join("");
-
   return `
     <style>${STYLE_TEXT}</style>
     <div class="pcw-root">
@@ -515,8 +583,6 @@ function createMarkup(config) {
               Ask about experience, projects, stack, or strengths. Replies stay concise and grounded in documented portfolio context.
             </div>
           </div>
-
-          <div class="pcw-starters">${starterButtons}</div>
 
           <form class="pcw-form">
             <label class="pcw-visually-hidden" for="pcw-input">
@@ -634,7 +700,6 @@ function mountWidget(overrides = {}) {
     input: shadowRoot.querySelector(".pcw-input"),
     send: shadowRoot.querySelector(".pcw-send"),
     messages: shadowRoot.querySelector(".pcw-messages"),
-    starters: shadowRoot.querySelector(".pcw-starters"),
     status: shadowRoot.querySelector(".pcw-status"),
   };
 

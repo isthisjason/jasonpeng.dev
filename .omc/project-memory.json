@@ -130,6 +130,25 @@
       ]
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "public/favicon.svg",
+      "accessCount": 6,
+      "lastAccessed": 1775375687448,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/__root.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1775375484783,
+      "type": "file"
+    },
+    {
+      "path": "src/components/HomePage.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1775375485123,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }
