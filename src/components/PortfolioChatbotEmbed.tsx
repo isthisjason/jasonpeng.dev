@@ -8,6 +8,7 @@ type ChatbotConfig = {
   title?: string
   subtitle?: string
   source?: string
+  turnstileSiteKey?: string
 }
 
 type ChatbotApi = {
@@ -36,6 +37,10 @@ function getApiBaseUrl() {
   )
 }
 
+function getTurnstileSiteKey() {
+  return import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
+}
+
 export function PortfolioChatbotEmbed() {
   useEffect(() => {
     const scriptUrl = getWidgetScriptUrl()
@@ -45,6 +50,7 @@ export function PortfolioChatbotEmbed() {
       subtitle:
         'Recruiter-focused answers grounded in public portfolio and resume details.',
       source: 'portfolio-widget',
+      turnstileSiteKey: getTurnstileSiteKey(),
     }
 
     window.PortfolioChatbotConfig = {
