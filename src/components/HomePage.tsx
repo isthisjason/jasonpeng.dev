@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  UserRound,
 } from 'lucide-react'
 
 function openChatbot() {
@@ -145,20 +144,13 @@ export function HomePage() {
             <div className="w-full lg:w-2/5">
               <div className="rounded-[1.75rem] bg-slate-950 p-6 text-slate-100 shadow-[0_20px_60px_-26px_rgba(18,34,46,0.58)]">
                 <div className="overflow-hidden rounded-[1.5rem] border border-cyan-300/16 bg-[linear-gradient(180deg,rgba(17,24,39,0.88)_0%,rgba(15,23,42,0.94)_100%)]">
-                  <div className="flex min-h-[28rem] items-center justify-center p-8">
-                    <div className="flex max-w-[16rem] flex-col items-center text-center">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cyan-300/10 text-cyan-200">
-                        <UserRound className="h-10 w-10" />
-                      </div>
-                      <div className="mt-5 text-sm font-semibold tracking-[0.18em] text-cyan-100 uppercase">
-                        Future Portrait Area
-                      </div>
-                      <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                        Reserved for a professional photo. This hero card can
-                        become your image slot later without changing the rest
-                        of the layout.
-                      </p>
-                    </div>
+                  <div className="relative min-h-[28rem]">
+                    <img
+                      src="/photos/edited001v2jpg.jpg"
+                      alt="Jason Peng portrait"
+                      className="h-full min-h-[28rem] w-full object-cover object-center"
+                      loading="eager"
+                    />
                   </div>
                 </div>
               </div>

@@ -21,3 +21,4 @@ todos.json
 # local portrait uploads for portfolio
 public/photos/*
 !public/photos/.gitkeep
+!public/photos/edited001v2jpg.jpg
