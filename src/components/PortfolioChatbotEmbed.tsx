@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 const CHATBOT_SCRIPT_ID = 'portfolio-chatbot-widget-script'
 const CHATBOT_GLOBAL = 'PortfolioChatbotWidget'
+const LOCAL_WIDGET_URL = '/widget.js'
 
 type ChatbotConfig = {
   apiBaseUrl: string
@@ -26,7 +27,7 @@ declare global {
 function getWidgetScriptUrl() {
   return (
     import.meta.env.VITE_CHATBOT_WIDGET_URL ||
-    'http://127.0.0.1:4173/dist/widget.js'
+    LOCAL_WIDGET_URL
   )
 }
 
@@ -71,14 +72,7 @@ export function PortfolioChatbotEmbed() {
       return
     }
 
-    const script = document.createElement('script')
-    script.id = CHATBOT_SCRIPT_ID
-    script.src = scriptUrl
-    script.async = true
-    script.defer = true
-    script.setAttribute('data-api-base-url', config.apiBaseUrl)
-
-    script.onload = () => {
+    const mountIfAvailable = () => {
       const chatbot = window[CHATBOT_GLOBAL]
       if (chatbot) {
         chatbot.updateConfig?.(config)
@@ -86,7 +80,29 @@ export function PortfolioChatbotEmbed() {
       }
     }
 
-    document.body.appendChild(script)
+    const loadScript = (url: string) => {
+      const script = document.createElement('script')
+      script.id = CHATBOT_SCRIPT_ID
+      script.src = url
+      script.async = true
+      script.defer = true
+      script.setAttribute('data-api-base-url', config.apiBaseUrl)
+      script.onload = mountIfAvailable
+      script.onerror = () => {
+        if (url !== LOCAL_WIDGET_URL) {
+          script.remove()
+          loadScript(LOCAL_WIDGET_URL)
+        } else {
+          console.error('[portfolio-chatbot] failed to load widget script', {
+            attemptedUrl: scriptUrl,
+            fallbackUrl: LOCAL_WIDGET_URL,
+          })
+        }
+      }
+      document.body.appendChild(script)
+    }
+
+    loadScript(scriptUrl)
   }, [])
 
   return null
