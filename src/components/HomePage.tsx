@@ -3,19 +3,25 @@ import {
   UserRound,
 } from 'lucide-react'
 
+function openChatbot() {
+  const host = document.getElementById('portfolio-chatbot-widget')
+  const launcher = host?.shadowRoot?.querySelector<HTMLElement>('.pcw-launcher')
+  launcher?.click()
+}
+
 const projectCards = [
   {
-    title: 'Portfolio AI Assistant',
-    eyebrow: 'In Progress',
-    href: '#projects',
-    hrefLabel: 'Floating portfolio widget concept',
+    title: 'Portfolio LLM Assistant',
+    eyebrow: 'Production',
+    hrefLabel: null as string | null,
+    demoAction: openChatbot,
     description:
-      'Scaffolding a bottom-right portfolio chat widget that helps recruiters and collaborators explore projects, experience, and technical strengths without leaving the page.',
+      'Integrated an embedded LLM chatbot enabling visitors to explore projects, technical skills, and background through natural-language conversation.',
     highlights: [
-      'Planning the embed as a script-loaded widget so the portfolio site can stay simple while the chatbot ships from its own Cloudflare Pages + Worker project.',
-      'Mapping the first version around a focused system prompt, structured portfolio context, and a compact floating UI that feels native to the site.',
+      'Hardened the backend for production: strict input validation, CORS allowlists, rate-limiting and abuse controls, LLM refusal behavior, observability, and secure secret management across environments.',
+      'Ships as a script-loaded widget from its own Cloudflare Pages + Worker project, keeping the portfolio site simple and independently deployable.',
     ],
-    tech: ['React', 'TypeScript', 'Prompt Design', 'LLM Integration'],
+    tech: ['JavaScript', 'Cloudflare Workers', 'OpenAI API', 'Vite', 'Prompt Engineering'],
     featured: true,
   },
   {
@@ -105,12 +111,12 @@ export function HomePage() {
                 CS New Grad · Expected June 2026
               </div>
               <h1 className="font-headline text-5xl leading-[0.92] font-bold tracking-tight text-on-surface md:text-7xl">
-                Building secure, production-ready web software.
+                Hi, I'm Jason.
               </h1>
               <p className="max-w-2xl font-body text-xl leading-relaxed text-on-surface-variant">
-                I am a Computer Science student at the University of
-                Saskatchewan focused on full-stack engineering, security
-                hardening, and reliable product delivery.
+                I'm a CS student at the University of Saskatchewan who enjoys
+                solving real problems, whether it's a tricky UI, wiring up an
+                API, or figuring out why something broke in prod.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <a
@@ -217,7 +223,15 @@ export function HomePage() {
                         {project.title}
                       </h4>
                     </div>
-                    {project.demoHref ? (
+                    {project.demoAction ? (
+                      <button
+                        type="button"
+                        onClick={project.demoAction}
+                        className="rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-[0.18em] text-on-primary transition-opacity hover:opacity-85 whitespace-nowrap"
+                      >
+                        DEMO
+                      </button>
+                    ) : project.demoHref ? (
                       <a
                         className="rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-[0.18em] text-on-primary no-underline transition-opacity hover:opacity-85"
                         href={project.demoHref}
@@ -229,20 +243,22 @@ export function HomePage() {
                     ) : null}
                   </div>
 
-                  <p
-                    className={`mb-3 text-sm ${
-                      project.featured ? 'text-cyan-100/75' : 'text-on-surface-variant'
-                    }`}
-                  >
-                    <a
-                      className={project.featured ? 'underline' : 'underline'}
-                      href={project.href}
-                      target={project.href.startsWith('http') ? '_blank' : undefined}
-                      rel={project.href.startsWith('http') ? 'noreferrer' : undefined}
+                  {project.hrefLabel ? (
+                    <p
+                      className={`mb-3 text-sm ${
+                        project.featured ? 'text-cyan-100/75' : 'text-on-surface-variant'
+                      }`}
                     >
-                      {project.hrefLabel}
-                    </a>
-                  </p>
+                      <a
+                        className="underline"
+                        href={project.href}
+                        target={project.href?.startsWith('http') ? '_blank' : undefined}
+                        rel={project.href?.startsWith('http') ? 'noreferrer' : undefined}
+                      >
+                        {project.hrefLabel}
+                      </a>
+                    </p>
+                  ) : null}
 
                   <p
                     className={`mb-3 leading-relaxed ${
@@ -335,9 +351,8 @@ export function HomePage() {
                 Git, Linux, Vim, Make, npm
               </p>
               <p>
-                <span className="font-semibold text-on-surface">Current Exploration:</span>{' '}
-                LLM application UX, prompt design, grounded responses, and chat
-                interface patterns for portfolio experiences
+                <span className="font-semibold text-on-surface">Platforms:</span>{' '}
+                Cloudflare Workers, Cloudflare Pages, Render
               </p>
             </div>
           </div>
