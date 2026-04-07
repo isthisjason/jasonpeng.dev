@@ -1,27 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Archivo", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-primary: #206393;
-  --color-on-primary: #f4f8ff;
-  --color-on-primary-container: #6d8395;
-  --color-secondary-container: #d4e4f6;
-  --color-on-secondary-fixed: #31414f;
-  --color-secondary-fixed-dim: #dbe4e7;
-  --color-surface: #f8f9fa;
-  --color-surface-container: #eaeff1;
-  --color-surface-container-low: #f1f4f6;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-high: #e3e9ec;
-  --color-surface-container-highest: #dbe4e7;
-  --color-on-surface: #2b3437;
-  --color-on-surface-variant: #586064;
-  --color-tertiary-container: #d4f8f7;
-  --color-on-tertiary: #2d4d4d;
+  /* Dark editorial palette */
+  --color-primary: #60a5fa;              /* blue-400 — accent on dark bg */
+  --color-on-primary: #09090b;           /* near-black text on blue button */
+  --color-on-primary-container: #71717a;
+  --color-secondary-container: #1c1c1f;
+  --color-on-secondary-fixed: #d4d4d8;
+  --color-secondary-fixed-dim: #27272a;
+  --color-surface: #111113;
+  --color-surface-container: #18181b;    /* card bg */
+  --color-surface-container-low: #111113;
+  --color-surface-container-lowest: #09090b; /* page bg */
+  --color-surface-container-high: #27272a;   /* borders / tag bg */
+  --color-surface-container-highest: #3f3f46;
+  --color-on-surface: #e4e4e7;           /* primary text — softened from #fafafa */
+  --color-on-surface-variant: #a1a1aa;   /* secondary text */
+  --color-tertiary-container: #0c1829;   /* featured card bg */
+  --color-on-tertiary: #bae6fd;
 }
 
 * {
@@ -36,30 +39,40 @@ body,
 
 body {
   margin: 0;
-  color: #2b3437;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  background-color: #f8f9fa;
+  color: #e4e4e7;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  background-color: #09090b;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Section gradient backgrounds — dark navy radial center, pure near-black at edges */
+.bg-section-mid {
+  background: radial-gradient(ellipse 90% 70% at 50% 50%, #0c1420 0%, #09090b 75%);
+}
+
+.bg-section-raised {
+  background: radial-gradient(ellipse 90% 70% at 50% 50%, #0e1828 0%, #09090b 70%);
+}
+
 .top-nav-link {
-  color: #586064;
-  font-family: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: #71717a;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
   text-decoration: none;
   transition: color 180ms ease;
 }
 
 .top-nav-link:hover {
-  color: #206393;
+  color: #e4e4e7;
 }
 
 .footer-link {
-  color: #94a3b8;
+  color: #52525b;
   text-decoration: none;
   transition: color 180ms ease;
 }
 
 .footer-link:hover {
-  color: #f1f5f9;
+  color: #a1a1aa;
 }

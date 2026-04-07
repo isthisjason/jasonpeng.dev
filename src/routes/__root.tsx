@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
 import { PortfolioChatbotEmbed } from '../components/PortfolioChatbotEmbed'
+import { CursorRipple } from '../components/CursorRipple'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -54,6 +55,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
         {children}
         <PortfolioChatbotEmbed />
+        <CursorRipple />
         <Scripts />
       </body>
     </html>
