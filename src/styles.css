@@ -14,6 +14,8 @@ html.dark,
 html[data-theme='dark'] {
   --chatbot-blue: #60a5fa;
   --chatbot-blue-strong: #3b82f6;
+  --support-teal: #2dd4bf;
+  --support-teal-strong: #14b8a6;
   /* Dark editorial palette */
   --color-primary: var(--chatbot-blue);  /* chatbot launcher blue in dark mode */
   --color-on-primary: #09090b;           /* near-black text on blue button */
@@ -49,20 +51,25 @@ html[data-theme='dark'] {
   --interactive-outline: color-mix(in srgb, var(--color-primary) 24%, transparent);
   --page-accent-top: rgba(96, 165, 250, 0.16);
   --page-accent-bottom: rgba(59, 130, 246, 0.12);
+  --page-accent-support: rgba(45, 212, 191, 0.07);
   --surface-tint: rgba(96, 165, 250, 0.06);
   --surface-tint-strong: rgba(56, 189, 248, 0.1);
+  --surface-tint-support: rgba(45, 212, 191, 0.07);
   --accent-soft: color-mix(in srgb, var(--chatbot-blue) 16%, transparent);
   --accent-soft-strong: color-mix(in srgb, var(--chatbot-blue-strong) 24%, transparent);
+  --accent-soft-support: color-mix(in srgb, var(--support-teal) 16%, transparent);
   --accent-border-soft: color-mix(in srgb, var(--chatbot-blue) 36%, var(--color-surface-container-high));
   --scroll-glow-1: rgba(96, 165, 250, 0.16);
   --scroll-glow-2: rgba(59, 130, 246, 0.14);
-  --scroll-glow-3: rgba(14, 116, 144, 0.13);
+  --scroll-glow-3: rgba(20, 184, 166, 0.13);
 }
 
 html.light,
 html[data-theme='light'] {
   --chatbot-blue: #1d4ed8;
   --chatbot-blue-strong: #1e40af;
+  --support-teal: #0f766e;
+  --support-teal-strong: #0d9488;
   --color-primary: var(--chatbot-blue);  /* chatbot launcher blue in light mode */
   --color-on-primary: #eff6ff;
   --color-on-primary-container: #64748b;
@@ -97,14 +104,17 @@ html[data-theme='light'] {
   --interactive-outline: color-mix(in srgb, var(--color-primary) 18%, transparent);
   --page-accent-top: rgba(29, 78, 216, 0.14);
   --page-accent-bottom: rgba(30, 64, 175, 0.11);
+  --page-accent-support: rgba(13, 148, 136, 0.06);
   --surface-tint: rgba(29, 78, 216, 0.05);
   --surface-tint-strong: rgba(30, 64, 175, 0.08);
+  --surface-tint-support: rgba(13, 148, 136, 0.06);
   --accent-soft: color-mix(in srgb, var(--chatbot-blue) 12%, white 88%);
   --accent-soft-strong: color-mix(in srgb, var(--chatbot-blue-strong) 18%, white 82%);
+  --accent-soft-support: color-mix(in srgb, var(--support-teal) 12%, white 88%);
   --accent-border-soft: color-mix(in srgb, var(--chatbot-blue) 35%, var(--color-surface-container-high));
   --scroll-glow-1: rgba(29, 78, 216, 0.14);
   --scroll-glow-2: rgba(30, 64, 175, 0.12);
-  --scroll-glow-3: rgba(37, 99, 235, 0.1);
+  --scroll-glow-3: rgba(13, 148, 136, 0.1);
 }
 
 * {
@@ -125,6 +135,7 @@ body {
   background-image:
     radial-gradient(circle at 18% 12%, var(--page-accent-top) 0%, transparent 28%),
     radial-gradient(circle at 82% 78%, var(--page-accent-bottom) 0%, transparent 32%),
+    radial-gradient(circle at 62% 36%, var(--page-accent-support) 0%, transparent 34%),
     linear-gradient(180deg, color-mix(in srgb, var(--chatbot-blue) 4%, transparent) 0%, transparent 26%);
   background-attachment: fixed;
   transition: background-color 260ms ease, color 220ms ease;
@@ -135,7 +146,8 @@ body {
 /* Section gradient backgrounds — dark navy radial center, pure near-black at edges */
 .bg-section-mid {
   background:
-    radial-gradient(circle at 22% 18%, var(--surface-tint) 0%, transparent 26%),
+    radial-gradient(circle at 22% 18%, var(--surface-tint-support) 0%, transparent 27%),
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--surface-tint) 72%, transparent) 0%, transparent 24%),
     radial-gradient(ellipse 90% 70% at 50% 50%, var(--section-mid-start) 0%, var(--section-fade-end) 75%);
 }
 
@@ -174,7 +186,8 @@ body {
 .accent-card {
   background-image:
     linear-gradient(180deg, var(--accent-soft), transparent 62%),
-    radial-gradient(circle at 88% -16%, var(--accent-soft-strong) 0%, transparent 48%);
+    radial-gradient(circle at 88% -16%, var(--accent-soft-strong) 0%, transparent 48%),
+    radial-gradient(circle at -12% 112%, var(--accent-soft-support) 0%, transparent 44%);
   border-color: var(--accent-border-soft);
 }
 
@@ -259,6 +272,7 @@ body {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  touch-action: manipulation;
   transition:
     transform 180ms ease,
     background-color 220ms ease,

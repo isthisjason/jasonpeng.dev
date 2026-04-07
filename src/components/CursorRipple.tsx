@@ -24,6 +24,8 @@ const SPAWN_DISTANCE = 10
 const MAX_PARTICLES  = 200
 const SPAWN_COUNT    = 1
 const MAX_DRIFT      = 85     // px from spawn before fully faded
+const DARK_RIPPLE_RGB = '96,165,250'   // #60a5fa
+const LIGHT_RIPPLE_RGB = '30,64,175'   // #1e40af (darker for light mode)
 
 export function CursorRipple() {
   useEffect(() => {
@@ -46,6 +48,11 @@ export function CursorRipple() {
     const particles: Particle[] = []
     let lastX = -9999
     let lastY = -9999
+
+    const isLightTheme = () => {
+      const root = document.documentElement
+      return root.classList.contains('light') || root.dataset.theme === 'light'
+    }
 
     function onMouseMove(e: MouseEvent) {
       const dx    = e.clientX - lastX
@@ -120,10 +127,11 @@ export function CursorRipple() {
         const drawX    = p.x + p.perpX * wave
         const drawY    = p.y + p.perpY * wave
 
+        const rippleRgb = isLightTheme() ? LIGHT_RIPPLE_RGB : DARK_RIPPLE_RGB
         ctx.font        = `${p.fontSize}px monospace`
-        ctx.fillStyle   = `rgba(96,165,250,${alpha.toFixed(3)})`
+        ctx.fillStyle   = `rgba(${rippleRgb},${alpha.toFixed(3)})`
         ctx.shadowBlur  = 10
-        ctx.shadowColor = `rgba(96,165,250,${(alpha * 0.35).toFixed(3)})`
+        ctx.shadowColor = `rgba(${rippleRgb},${(alpha * 0.35).toFixed(3)})`
         ctx.fillText(p.char, drawX, drawY)
         ctx.shadowBlur  = 0
       }
