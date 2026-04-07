@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import type { ThemeMode } from './ThemeToggle'
 
 const CHATBOT_SCRIPT_ID = 'portfolio-chatbot-widget-script'
 const CHATBOT_GLOBAL = 'PortfolioChatbotWidget'
@@ -10,6 +11,7 @@ type ChatbotConfig = {
   subtitle?: string
   source?: string
   turnstileSiteKey?: string
+  theme?: ThemeMode
 }
 
 type ChatbotApi = {
@@ -42,17 +44,26 @@ function getTurnstileSiteKey() {
   return import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
 }
 
-export function PortfolioChatbotEmbed() {
+type PortfolioChatbotEmbedProps = {
+  mode: ThemeMode
+}
+
+export function buildChatbotConfig(mode: ThemeMode): ChatbotConfig {
+  return {
+    apiBaseUrl: getApiBaseUrl(),
+    title: 'Ask Jason',
+    subtitle:
+      'Recruiter-focused answers grounded in public portfolio and resume details.',
+    source: 'portfolio-widget',
+    turnstileSiteKey: getTurnstileSiteKey(),
+    theme: mode,
+  }
+}
+
+export function PortfolioChatbotEmbed({ mode }: PortfolioChatbotEmbedProps) {
   useEffect(() => {
     const scriptUrl = getWidgetScriptUrl()
-    const config: ChatbotConfig = {
-      apiBaseUrl: getApiBaseUrl(),
-      title: 'Ask Jason',
-      subtitle:
-        'Recruiter-focused answers grounded in public portfolio and resume details.',
-      source: 'portfolio-widget',
-      turnstileSiteKey: getTurnstileSiteKey(),
-    }
+    const config = buildChatbotConfig(mode)
 
     window.PortfolioChatbotConfig = {
       ...(window.PortfolioChatbotConfig || {}),
@@ -103,7 +114,7 @@ export function PortfolioChatbotEmbed() {
     }
 
     loadScript(scriptUrl)
-  }, [])
+  }, [mode])
 
   return null
 }
