@@ -3,18 +3,27 @@ import { useEffect } from 'react'
 interface Particle {
   x: number
   y: number
+  spawnX: number    // birth position — fade is distance from here, not cursor
+  spawnY: number
   char: string
-  size: number
+  fontSize: number
   vx: number
   vy: number
-  life: number   // 0 → 1
-  speed: number  // life increment per frame
+  perpX: number     // perpendicular to radial direction, for transverse ripple
+  perpY: number
+  waveAmp: number
+  waveFreq: number
+  wavePhase: number
+  life: number
+  speed: number
 }
 
-const CHARS    = '01{}[]<>/\\|·*+-~;:,.'
-const MAX_ALPHA      = 0.22
-const SPAWN_DISTANCE = 28   // px of travel before spawning
-const MAX_PARTICLES  = 120
+const SYMBOLS        = '\\;\'+-=|><{}!?,:~^%#@/'
+const MAX_ALPHA      = 0.6
+const SPAWN_DISTANCE = 10
+const MAX_PARTICLES  = 200
+const SPAWN_COUNT    = 1
+const MAX_DRIFT      = 85     // px from spawn before fully faded
 
 export function CursorRipple() {
   useEffect(() => {
@@ -22,12 +31,10 @@ export function CursorRipple() {
 
     const canvas = document.createElement('canvas')
     canvas.style.cssText =
-      'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1'
+      'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50'
     document.body.appendChild(canvas)
 
     const ctx = canvas.getContext('2d')!
-    ctx.textAlign    = 'center'
-    ctx.textBaseline = 'middle'
 
     function resize() {
       canvas.width  = window.innerWidth
@@ -41,22 +48,40 @@ export function CursorRipple() {
     let lastY = -9999
 
     function onMouseMove(e: MouseEvent) {
-      const dx = e.clientX - lastX
-      const dy = e.clientY - lastY
-      if (dx * dx + dy * dy < SPAWN_DISTANCE * SPAWN_DISTANCE) return
+      const dx    = e.clientX - lastX
+      const dy    = e.clientY - lastY
+      const dist2 = dx * dx + dy * dy
+      if (dist2 < SPAWN_DISTANCE * SPAWN_DISTANCE) return
       lastX = e.clientX
       lastY = e.clientY
 
-      for (let i = 0; i < 3; i++) {
+      // Scale drift speed with cursor speed — sqrt keeps it feeling proportional
+      const cursorSpeed  = Math.sqrt(dist2)
+      const speedFactor  = Math.sqrt(cursorSpeed / SPAWN_DISTANCE)  // 1.0 at min, ~3+ when fast
+
+      for (let i = 0; i < SPAWN_COUNT; i++) {
+        // Radial outward in a random direction — like ripples from a disturbance
+        const angle  = Math.random() * Math.PI * 2
+        const radX   = Math.cos(angle)
+        const radY   = Math.sin(angle)
+        const drift  = (0.25 + Math.random() * 0.4) * speedFactor
+
         particles.push({
-          x:     e.clientX + (Math.random() - 0.5) * 22,
-          y:     e.clientY + (Math.random() - 0.5) * 22,
-          char:  CHARS[Math.floor(Math.random() * CHARS.length)],
-          size:  11 + Math.random() * 3,
-          vx:    (Math.random() - 0.5) * 0.5,
-          vy:    -(0.4 + Math.random() * 0.7),
-          life:  0,
-          speed: 0.008 + Math.random() * 0.004,  // ~100–125 frames to die
+          x:         e.clientX,
+          y:         e.clientY,
+          spawnX:    e.clientX,
+          spawnY:    e.clientY,
+          char:      SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
+          fontSize:  9 + Math.random() * 8,
+          vx:        radX * drift,
+          vy:        radY * drift,
+          perpX:     -radY,   // 90° from radial
+          perpY:      radX,
+          waveAmp:   5 + Math.random() * 8,
+          waveFreq:  1.5 + Math.random() * 1.0,
+          wavePhase: Math.random() * Math.PI * 2,
+          life:      0,
+          speed:     0.005 + Math.random() * 0.003,
         })
       }
 
@@ -70,22 +95,37 @@ export function CursorRipple() {
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const now = Date.now() * 0.001
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i]
         p.life += p.speed
         p.x    += p.vx
         p.y    += p.vy
+        p.vx   *= 0.98
+        p.vy   *= 0.98
 
         if (p.life >= 1) { particles.splice(i, 1); continue }
 
-        // Ease-in-quad fade: slow to appear, drops off toward end
-        const t     = 1 - p.life
-        const alpha = MAX_ALPHA * t * t
+        // Fade by distance traveled from birth point — cursor position irrelevant
+        const drift   = Math.hypot(p.x - p.spawnX, p.y - p.spawnY)
+        const spatial = Math.max(0, 1 - drift / MAX_DRIFT)
+        const alpha   = MAX_ALPHA * spatial * Math.sin(Math.PI * p.life)
 
-        ctx.font      = `${p.size}px monospace`
-        ctx.fillStyle = `rgba(96,165,250,${alpha.toFixed(3)})`
-        ctx.fillText(p.char, p.x, p.y)
+        if (alpha < 0.005) continue
+
+        // Transverse ripple wave
+        const envelope = Math.sin(Math.PI * p.life)
+        const wave     = Math.sin(now * p.waveFreq + p.wavePhase) * p.waveAmp * envelope
+        const drawX    = p.x + p.perpX * wave
+        const drawY    = p.y + p.perpY * wave
+
+        ctx.font        = `${p.fontSize}px monospace`
+        ctx.fillStyle   = `rgba(96,165,250,${alpha.toFixed(3)})`
+        ctx.shadowBlur  = 10
+        ctx.shadowColor = `rgba(96,165,250,${(alpha * 0.35).toFixed(3)})`
+        ctx.fillText(p.char, drawX, drawY)
+        ctx.shadowBlur  = 0
       }
 
       rafId = requestAnimationFrame(draw)

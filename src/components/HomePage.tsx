@@ -147,6 +147,7 @@ export function HomePage() {
 
       <main id="top" className="relative z-10 pt-16">
         {/* ── HERO ────────────────────────────────────────────── */}
+        <div className="relative">
         <section className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl flex-col justify-center px-8 py-16 md:py-20">
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
             {/* text */}
@@ -181,17 +182,14 @@ export function HomePage() {
                   GitHub Profile
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
-              </div>
-
-              <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-on-surface-variant/50">
-                <span>Saskatoon, SK</span>
-                <span aria-hidden="true">·</span>
-                <a href="mailto:shuangzp@gmail.com" className="transition-colors hover:text-primary">
-                  shuangzp@gmail.com
-                </a>
-                <span aria-hidden="true">·</span>
-                <a href="https://linkedin.com/in/isthisjason" target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">
-                  linkedin.com/in/isthisjason
+                <a
+                  href="https://linkedin.com/in/isthisjason"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-surface-container-high px-6 py-3 font-semibold text-on-surface no-underline transition-all duration-200 hover:border-primary/40 hover:text-primary"
+                >
+                  LinkedIn
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -214,6 +212,18 @@ export function HomePage() {
             </div>
           </div>
         </section>
+        {/* fade from hero into education */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            height: '60px',
+            background: 'linear-gradient(to bottom, transparent, #0c1420)',
+            pointerEvents: 'none',
+            zIndex: 2,
+          }}
+        />
+        </div>
 
         {/* ── EDUCATION ───────────────────────────────────────── */}
         <section id="about" className="border-t border-surface-container-high/30 bg-section-mid py-14 md:py-16">
@@ -366,7 +376,17 @@ export function HomePage() {
         </section>
 
         {/* ── TECHNICAL SKILLS ────────────────────────────────── */}
-        <section id="skills" className="border-t border-surface-container-high/30 bg-section-raised py-14 md:py-16">
+        <section id="skills" className="relative border-t border-surface-container-high/30 bg-section-raised py-14 md:py-16">
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              height: '60px',
+              background: 'linear-gradient(to bottom, transparent, #09090b)',
+              pointerEvents: 'none',
+              zIndex: 1,
+            }}
+          />
           <div className="mx-auto max-w-7xl px-8">
             <p className="mb-6 text-xs font-semibold tracking-[0.25em] text-on-surface-variant/55 uppercase">
               04 / Technical Skills
@@ -394,7 +414,7 @@ export function HomePage() {
         </section>
 
         {/* ── CONTACT ─────────────────────────────────────────── */}
-        <section id="contact" className="border-t border-surface-container-high/30 py-16 md:py-24">
+        <section id="contact" className="py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-8">
             <p className="mb-6 text-xs font-semibold tracking-[0.25em] text-on-surface-variant/55 uppercase">
               05 / Contact
