@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, ExternalLink } from 'lucide-react'
+import { ArrowRight, ExternalLink, Menu, X } from 'lucide-react'
 
 const sectionGlows: Record<string, { x: string; y: string; color: string }> = {
   top:        { x: '75%', y: '10%', color: 'var(--scroll-glow-1)' },
@@ -93,6 +93,7 @@ const skillGroups = [
 
 export function HomePage() {
   const [activeSection, setActiveSection] = useState('top')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,19 +139,18 @@ export function HomePage() {
           >
             Jason Peng
           </a>
-          <div className="ml-auto flex items-center gap-2 md:hidden">
-            <a
-              className="button-reactive inline-flex min-h-[44px] items-center rounded-md border border-primary/35 px-3 py-2 text-xs font-semibold text-primary no-underline"
-              href="#projects"
+          <div className="ml-auto flex items-center md:hidden">
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              className="button-reactive inline-flex min-h-[44px] w-11 items-center justify-center rounded-md border border-primary/35 text-primary"
             >
-              Projects
-            </a>
-            <a
-              className="button-reactive inline-flex min-h-[44px] items-center rounded-md border border-primary/35 px-3 py-2 text-xs font-semibold text-primary no-underline"
-              href="#contact"
-            >
-              Contact
-            </a>
+              {menuOpen
+                ? <X className="h-4 w-4" aria-hidden="true" />
+                : <Menu className="h-4 w-4" aria-hidden="true" />}
+            </button>
           </div>
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
             <a className="top-nav-link" href="#about">About</a>
@@ -159,6 +159,24 @@ export function HomePage() {
             <a className="top-nav-link" href="#contact">Contact</a>
           </div>
         </div>
+
+        {/* ── MOBILE DROPDOWN ─────────────────────────────────── */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-surface-container-high/60 bg-surface-container-lowest/95 backdrop-blur-xl">
+            <div className="mx-auto max-w-7xl px-5">
+              {[['About', '#about'], ['Projects', '#projects'], ['Experience', '#experience'], ['Skills', '#skills'], ['Contact', '#contact']].map(([label, href]) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex min-h-[52px] items-center border-b border-surface-container-high/40 text-sm font-semibold text-on-surface-variant transition-colors duration-150 last:border-0 hover:text-on-surface"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
       <main id="top" className="relative z-10 pt-16">
@@ -193,7 +211,7 @@ export function HomePage() {
                   href="https://github.com/isthisjason"
                   target="_blank"
                   rel="noreferrer"
-                  className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/70 bg-primary px-6 py-3 font-semibold text-on-primary no-underline shadow-[var(--interactive-shadow)] sm:w-auto"
+                  className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/60 bg-transparent px-6 py-3 font-semibold text-primary no-underline sm:w-auto"
                 >
                   GitHub Profile
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
@@ -202,7 +220,7 @@ export function HomePage() {
                   href="https://linkedin.com/in/isthisjason"
                   target="_blank"
                   rel="noreferrer"
-                  className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/70 bg-primary px-6 py-3 font-semibold text-on-primary no-underline shadow-[var(--interactive-shadow)] sm:w-auto"
+                  className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/60 bg-transparent px-6 py-3 font-semibold text-primary no-underline sm:w-auto"
                 >
                   LinkedIn
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
@@ -359,7 +377,7 @@ export function HomePage() {
                     <h3 className="theme-copy font-headline text-xl font-bold text-on-surface">
                       {role.title}
                     </h3>
-                    <span className="theme-copy shrink-0 pt-0.5 text-xs text-on-surface-variant/35">
+                    <span className="theme-copy shrink-0 pt-0.5 text-xs text-on-surface-variant/60">
                       {role.dates}
                     </span>
                   </div>
@@ -463,7 +481,7 @@ export function HomePage() {
       {/* ── FOOTER ──────────────────────────────────────────── */}
       <footer className="theme-surface border-t border-surface-container-high/30 py-8">
         <div className="mx-auto flex max-w-7xl items-center justify-center px-5 text-center sm:px-6 md:px-8">
-          <span className="theme-copy font-headline text-xs font-bold tracking-[0.12em] text-on-surface-variant/25 uppercase md:tracking-[0.18em]">
+          <span className="theme-copy font-headline text-xs font-bold tracking-[0.12em] text-on-surface-variant/50 uppercase md:tracking-[0.18em]">
             Why hello there, thanks for scrolling all the way down! 
           </span>
         </div>
