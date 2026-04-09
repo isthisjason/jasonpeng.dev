@@ -234,7 +234,7 @@ export function HomePage() {
                 <img
                   src="/photos/edited001v2jpg.jpg"
                   alt="Jason Peng portrait"
-                  className="block h-full min-h-[26rem] w-full object-cover object-center"
+                  className="block h-full min-h-[18rem] w-full object-cover object-center sm:min-h-[22rem] md:min-h-[26rem]"
                   loading="eager"
                 />
               </div>
@@ -441,7 +441,7 @@ export function HomePage() {
             <div className="mt-10 flex flex-wrap gap-6 sm:gap-8">
               <a
                 href="mailto:shuangzp@gmail.com"
-                className="inline-link group gap-2 break-all font-semibold text-on-surface sm:break-normal"
+                className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 shuangzp@gmail.com
                 <ArrowRight
@@ -453,7 +453,7 @@ export function HomePage() {
                 href="https://github.com/isthisjason"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-link group gap-2 break-all font-semibold text-on-surface sm:break-normal"
+                className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 github.com/isthisjason
                 <ArrowRight
@@ -465,7 +465,7 @@ export function HomePage() {
                 href="https://linkedin.com/in/isthisjason"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-link group gap-2 break-all font-semibold text-on-surface sm:break-normal"
+                className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 linkedin.com/in/isthisjason
                 <ArrowRight

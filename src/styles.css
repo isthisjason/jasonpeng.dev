@@ -127,6 +127,15 @@ body,
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+main[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   margin: 0;
   color: var(--color-on-surface);
@@ -141,6 +150,12 @@ body {
   transition: background-color 260ms ease, color 220ms ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 /* Section gradient backgrounds — dark navy radial center, pure near-black at edges */
