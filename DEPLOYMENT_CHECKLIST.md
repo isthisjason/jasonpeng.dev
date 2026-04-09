@@ -4,11 +4,15 @@ This project is a small portfolio site, so the main deployment risks are depende
 
 ## Current Review Notes
 
-- [ ] Upgrade the TanStack Start server stack before deployment.
-  `npm audit --omit=dev` reports 5 moderate vulnerabilities in `h3` via `@tanstack/react-start` and `@tanstack/start-server-core`.
-  Current lockfile references:
-  - `@tanstack/start-server-core@1.167.9`
-  - `h3@2.0.1-rc.16`
+- [x] Complete repo-level security audit and track findings.
+  See `SECURITY_AUDIT_2026-04-09.md` for severity-ranked findings, evidence, and remediation acceptance checks.
+
+- [x] Remediate `h3` transitive vulnerability in the TanStack Start server chain.
+  TanStack package latest currently remains `@tanstack/start-server-core@1.167.9`, so an npm override now pins `h3-v2` to `h3@2.0.1-rc.20`.
+  Verify with `npm ls h3 h3-v2 --all` and `npm audit --omit=dev`.
+
+- [x] Upgrade Vite to a patched version.
+  `vite` is now `7.3.2` and `npm audit --omit=dev` reports no vulnerabilities.
 
 - [x] Replace `latest` dependency specifiers with pinned versions.
   The TanStack packages and devtools are now pinned in `package.json` to make installs more reproducible.

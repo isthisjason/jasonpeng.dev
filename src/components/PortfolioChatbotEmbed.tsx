@@ -4,6 +4,15 @@ import type { ThemeMode } from './ThemeToggle'
 const CHATBOT_SCRIPT_ID = 'portfolio-chatbot-widget-script'
 const CHATBOT_GLOBAL = 'PortfolioChatbotWidget'
 const LOCAL_WIDGET_URL = '/widget.js'
+const DEV_WIDGET_ORIGINS = new Set(['http://127.0.0.1:4173', 'http://localhost:4173'])
+const PROD_WIDGET_ORIGINS = new Set([
+  'https://jasonpengdevsite.shuangzp.workers.dev',
+])
+const DEV_API_ORIGINS = new Set(['http://127.0.0.1:8787', 'http://localhost:8787'])
+const PROD_API_ORIGINS = new Set([
+  'https://chatbot-assistant-api.shuangzp.workers.dev',
+  'https://chatbot-assistant-api-preview.shuangzp.workers.dev',
+])
 
 type ChatbotConfig = {
   apiBaseUrl: string
@@ -44,6 +53,73 @@ function getTurnstileSiteKey() {
   return import.meta.env.VITE_TURNSTILE_SITE_KEY || ''
 }
 
+function resolveTrustedUrl(
+  candidate: string,
+  fallback: string,
+  allowedOrigins: Set<string>,
+  label: 'widget' | 'api',
+) {
+  const fallbackUrl = new URL(fallback, window.location.origin)
+
+  try {
+    const parsed = new URL(candidate, window.location.origin)
+    const isLocalhost = parsed.hostname === '127.0.0.1' || parsed.hostname === 'localhost'
+    const isAllowedOrigin =
+      parsed.origin === window.location.origin || allowedOrigins.has(parsed.origin)
+    const hasAllowedProtocol =
+      parsed.protocol === 'https:' || (parsed.protocol === 'http:' && isLocalhost)
+
+    if (!isAllowedOrigin || !hasAllowedProtocol) {
+      throw new Error('untrusted origin or protocol')
+    }
+
+    if (label === 'widget' && !parsed.pathname.endsWith('.js')) {
+      throw new Error('widget URL must end with .js')
+    }
+
+    return parsed.toString()
+  } catch (error) {
+    console.warn(`[portfolio-chatbot] rejected untrusted ${label} URL`, {
+      candidate,
+      fallback: fallbackUrl.toString(),
+      reason: error instanceof Error ? error.message : 'invalid url',
+    })
+    return fallbackUrl.toString()
+  }
+}
+
+function getTrustedWidgetScriptUrl() {
+  const allowedOrigins = new Set([
+    ...DEV_WIDGET_ORIGINS,
+    ...PROD_WIDGET_ORIGINS,
+  ])
+  return resolveTrustedUrl(
+    getWidgetScriptUrl(),
+    LOCAL_WIDGET_URL,
+    allowedOrigins,
+    'widget',
+  )
+}
+
+function getTrustedApiBaseUrl() {
+  const allowedOrigins = new Set([
+    ...DEV_API_ORIGINS,
+    ...PROD_API_ORIGINS,
+  ])
+  const isLocalHost =
+    window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+  const fallback = isLocalHost
+    ? 'http://127.0.0.1:8787'
+    : 'https://chatbot-assistant-api.shuangzp.workers.dev'
+  const trusted = resolveTrustedUrl(
+    getApiBaseUrl(),
+    fallback,
+    allowedOrigins,
+    'api',
+  )
+  return trusted.replace(/\/$/, '')
+}
+
 type PortfolioChatbotEmbedProps = {
   mode: ThemeMode
 }
@@ -62,8 +138,11 @@ export function buildChatbotConfig(mode: ThemeMode): ChatbotConfig {
 
 export function PortfolioChatbotEmbed({ mode }: PortfolioChatbotEmbedProps) {
   useEffect(() => {
-    const scriptUrl = getWidgetScriptUrl()
-    const config = buildChatbotConfig(mode)
+    const scriptUrl = getTrustedWidgetScriptUrl()
+    const config = {
+      ...buildChatbotConfig(mode),
+      apiBaseUrl: getTrustedApiBaseUrl(),
+    }
 
     window.PortfolioChatbotConfig = {
       ...(window.PortfolioChatbotConfig || {}),

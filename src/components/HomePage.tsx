@@ -210,7 +210,7 @@ export function HomePage() {
                 <a
                   href="https://github.com/isthisjason"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/60 bg-transparent px-6 py-3 font-semibold text-primary no-underline sm:w-auto"
                 >
                   GitHub Profile
@@ -219,7 +219,7 @@ export function HomePage() {
                 <a
                   href="https://linkedin.com/in/isthisjason"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="button-reactive inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary/60 bg-transparent px-6 py-3 font-semibold text-primary no-underline sm:w-auto"
                 >
                   LinkedIn
@@ -308,7 +308,7 @@ export function HomePage() {
                       <a
                         href={project.demoHref}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="button-reactive inline-flex min-h-[44px] cursor-pointer whitespace-nowrap rounded-md border border-primary/70 bg-primary px-3.5 py-2 text-sm font-semibold tracking-wide text-on-primary no-underline md:min-h-0 md:px-3 md:py-1 md:text-xs"
                       >
                         Demo
@@ -321,7 +321,7 @@ export function HomePage() {
                     <a
                       href={project.href}
                       target={project.href?.startsWith('http') ? '_blank' : undefined}
-                      rel={project.href?.startsWith('http') ? 'noreferrer' : undefined}
+                      rel={project.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
                       className="inline-link mb-3 gap-1.5 text-sm text-on-surface-variant/45"
                     >
                       {project.hrefLabel}
@@ -452,7 +452,7 @@ export function HomePage() {
               <a
                 href="https://github.com/isthisjason"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 github.com/isthisjason
@@ -464,7 +464,7 @@ export function HomePage() {
               <a
                 href="https://linkedin.com/in/isthisjason"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 linkedin.com/in/isthisjason

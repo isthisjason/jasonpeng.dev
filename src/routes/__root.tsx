@@ -97,5 +97,4 @@ function applyThemeMode(mode: ThemeMode) {
   document.documentElement.classList.remove('light', 'dark')
   document.documentElement.classList.add(mode)
   document.documentElement.setAttribute('data-theme', mode)
-  document.documentElement.style.colorScheme = mode
 }

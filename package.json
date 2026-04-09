@@ -36,7 +36,7 @@
     "@vitejs/plugin-react": "^5.1.4",
     "jsdom": "^28.1.0",
     "typescript": "^5.7.2",
-    "vite": "^7.3.1",
+    "vite": "^7.3.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.5",
     "wrangler": "^4.80.0"
@@ -46,5 +46,8 @@
       "esbuild",
       "lightningcss"
     ]
+  },
+  "overrides": {
+    "h3-v2": "npm:h3@2.0.1-rc.20"
   }
 }
