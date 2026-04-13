@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Archivo:wght@400;600;700;900&display=swap");
+
 :host {
   all: initial;
 }
@@ -241,7 +243,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 34px;
   border-radius: 999px;
   cursor: pointer;
   transition:
@@ -255,8 +257,8 @@
 .pcw-close {
   background: color-mix(in srgb, var(--pcw-accent-contrast) 22%, transparent);
   color: color-mix(in srgb, var(--pcw-accent-contrast) 94%, transparent);
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   padding: 0;
   font-size: 20px;
   font-weight: 600;
@@ -607,17 +609,4 @@
   .pcw-launcher::after {
     transition: none;
   }
-}
-
-
-.pcw-turnstile-host {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 1px;
-  height: 1px;
-  opacity: 0.01;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;
 }

@@ -1,4 +1,4 @@
-const WIDGET_STYLESHEET_URL = "/widget.css";
+const STYLE_TEXT = "@import url(\"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Archivo:wght@400;600;700;900&display=swap\");\n\n:host {\n  all: initial;\n}\n\n.pcw-root,\n.pcw-root * {\n  box-sizing: border-box;\n  font-family: \"Space Grotesk\", \"Segoe UI\", sans-serif;\n}\n\n.pcw-root {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n  z-index: 2147483000;\n  color: var(--pcw-text);\n  --pcw-accent: #60a5fa;\n  --pcw-accent-strong: #3b82f6;\n  --pcw-accent-support: #2dd4bf;\n  --pcw-accent-contrast: #09090b;\n  --pcw-text: #f4f4f5;\n  --pcw-text-soft: #d4d4d8;\n  --pcw-text-muted: #52525b;\n  --pcw-surface: #18181b;\n  --pcw-surface-alt: #111113;\n  --pcw-surface-soft: #1c1c1f;\n  --pcw-border: #27272a;\n  --pcw-border-strong: #3f3f46;\n  --pcw-header: #0c1829;\n  --pcw-user-bubble: #0c1829;\n  --pcw-user-border: #1e3a5f;\n  --pcw-user-text: #e0f2fe;\n  --pcw-header-grad:\n    linear-gradient(118deg, var(--pcw-accent) 0%, var(--pcw-accent-strong) 52%, var(--pcw-accent-support) 100%);\n  --pcw-surface-tint:\n    radial-gradient(circle at 86% -8%, color-mix(in srgb, var(--pcw-accent-support) 18%, transparent) 0%, transparent 52%),\n    radial-gradient(circle at -14% 116%, color-mix(in srgb, var(--pcw-accent) 16%, transparent) 0%, transparent 50%);\n  --pcw-launcher-grad:\n    linear-gradient(136deg, var(--pcw-accent) 0%, var(--pcw-accent-strong) 60%, var(--pcw-accent-support) 100%);\n  --pcw-launcher-ring: color-mix(in srgb, var(--pcw-accent-support) 24%, transparent);\n  --pcw-launcher-shadow:\n    0 18px 40px rgba(0, 0, 0, 0.45),\n    0 6px 14px rgba(45, 212, 191, 0.22);\n  --pcw-launcher-shadow-hover:\n    0 22px 50px rgba(0, 0, 0, 0.5),\n    0 8px 18px rgba(45, 212, 191, 0.3);\n  --pcw-panel-shadow:\n    0 30px 80px rgba(0, 0, 0, 0.6),\n    0 8px 20px rgba(0, 0, 0, 0.35);\n  --pcw-focus: #60a5fa;\n}\n\n.pcw-root[data-theme=\"light\"] {\n  --pcw-accent: #1d4ed8;\n  --pcw-accent-strong: #1e40af;\n  --pcw-accent-support: #0f766e;\n  --pcw-accent-contrast: #eff6ff;\n  --pcw-text: #0f172a;\n  --pcw-text-soft: #334155;\n  --pcw-text-muted: #64748b;\n  --pcw-surface: #ffffff;\n  --pcw-surface-alt: #f8fafc;\n  --pcw-surface-soft: #eef4fb;\n  --pcw-border: #cbd5e1;\n  --pcw-border-strong: #94a3b8;\n  --pcw-header: #dbeafe;\n  --pcw-user-bubble: #dbeafe;\n  --pcw-user-border: #93c5fd;\n  --pcw-user-text: #1e3a8a;\n  --pcw-header-grad:\n    linear-gradient(116deg, var(--pcw-accent) 0%, var(--pcw-accent-strong) 62%, var(--pcw-accent-support) 100%);\n  --pcw-surface-tint:\n    radial-gradient(circle at 86% -8%, color-mix(in srgb, var(--pcw-accent-support) 10%, white 90%) 0%, transparent 52%),\n    radial-gradient(circle at -14% 116%, color-mix(in srgb, var(--pcw-accent) 10%, white 90%) 0%, transparent 50%);\n  --pcw-launcher-grad:\n    linear-gradient(136deg, var(--pcw-accent) 0%, var(--pcw-accent-strong) 62%, var(--pcw-accent-support) 100%);\n  --pcw-launcher-ring: color-mix(in srgb, var(--pcw-accent-support) 20%, transparent);\n  --pcw-launcher-shadow:\n    0 18px 36px rgba(15, 23, 42, 0.12),\n    0 6px 14px rgba(15, 118, 110, 0.14);\n  --pcw-launcher-shadow-hover:\n    0 22px 44px rgba(15, 23, 42, 0.16),\n    0 8px 18px rgba(15, 118, 110, 0.18);\n  --pcw-panel-shadow:\n    0 28px 70px rgba(15, 23, 42, 0.16),\n    0 8px 20px rgba(15, 23, 42, 0.1);\n  --pcw-focus: #1d4ed8;\n}\n\n.pcw-launcher {\n  width: 60px;\n  height: 60px;\n  border: 0;\n  border-radius: 999px;\n  cursor: pointer;\n  position: relative;\n  overflow: hidden;\n  background: var(--pcw-launcher-grad);\n  color: var(--pcw-accent-contrast);\n  box-shadow: var(--pcw-launcher-shadow);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;\n}\n\n.pcw-launcher::before {\n  content: \"\";\n  position: absolute;\n  inset: -10px;\n  border-radius: inherit;\n  pointer-events: none;\n  border: 1px solid var(--pcw-launcher-ring);\n  opacity: 0.5;\n  transform: scale(1);\n  animation: pcw-launcher-ring 2.2s ease-out infinite;\n}\n\n.pcw-launcher::after {\n  content: \"\";\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.25) 50%, transparent 82%);\n  transform: translateX(-130%);\n  transition: transform 320ms ease;\n}\n\n.pcw-launcher:hover {\n  transform: translateY(-2px);\n  box-shadow: var(--pcw-launcher-shadow-hover);\n}\n\n.pcw-launcher:hover::after {\n  transform: translateX(130%);\n}\n\n.pcw-launcher[aria-expanded=\"true\"] {\n  background: linear-gradient(136deg, var(--pcw-accent-strong) 0%, var(--pcw-accent-support) 100%);\n  transform: rotate(90deg);\n}\n\n.pcw-launcher[aria-expanded=\"true\"]:hover {\n  transform: rotate(90deg) translateY(-2px);\n}\n\n.pcw-launcher:focus-visible,\n.pcw-close:focus-visible,\n.pcw-clear:focus-visible,\n.pcw-retry:focus-visible,\n.pcw-send:focus-visible,\n.pcw-input:focus-visible {\n  outline: 2px solid var(--pcw-focus);\n  outline-offset: 2px;\n}\n\n.pcw-panel {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  right: 0;\n  width: min(380px, calc(100vw - 24px));\n  height: min(620px, calc(100vh - 96px));\n  border-radius: 24px;\n  overflow: hidden;\n  background: var(--pcw-surface);\n  background-image: var(--pcw-surface-tint);\n  border: 1px solid var(--pcw-border);\n  box-shadow: var(--pcw-panel-shadow);\n  display: flex;\n  flex-direction: column;\n  backdrop-filter: blur(16px);\n  opacity: 0;\n  visibility: hidden;\n  pointer-events: none;\n  transform-origin: bottom right;\n}\n\n.pcw-panel.is-open {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  animation: pcw-panel-in 220ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;\n}\n\n.pcw-panel.is-closing {\n  visibility: visible;\n  pointer-events: none;\n  animation: pcw-panel-out 180ms cubic-bezier(0.4, 0, 1, 1) forwards;\n}\n\n.pcw-header {\n  padding: 12px 14px 10px;\n  background: var(--pcw-header-grad);\n  color: var(--pcw-accent-contrast);\n  border-bottom: 1px solid var(--pcw-border);\n}\n\n.pcw-header-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 12px;\n}\n\n.pcw-header-actions {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.pcw-eyebrow {\n  margin: 0 0 3px;\n  font-size: 10px;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  opacity: 0.6;\n}\n\n.pcw-title {\n  margin: 0;\n  font-size: 19px;\n  font-weight: 700;\n  font-family: \"Archivo\", sans-serif;\n}\n\n.pcw-subtitle {\n  margin: 3px 0 0;\n  font-size: 12px;\n  line-height: 1.35;\n  color: var(--pcw-text-soft);\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 220px;\n}\n\n.pcw-header-action {\n  appearance: none;\n  -webkit-appearance: none;\n  border: 0;\n  outline: none;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-height: 34px;\n  border-radius: 999px;\n  cursor: pointer;\n  transition:\n    background 160ms ease,\n    color 160ms ease,\n    border-color 160ms ease,\n    box-shadow 160ms ease,\n    transform 160ms ease;\n}\n\n.pcw-close {\n  background: color-mix(in srgb, var(--pcw-accent-contrast) 22%, transparent);\n  color: color-mix(in srgb, var(--pcw-accent-contrast) 94%, transparent);\n  width: 34px;\n  height: 34px;\n  padding: 0;\n  font-size: 20px;\n  font-weight: 600;\n  line-height: 1;\n  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pcw-accent-contrast) 28%, transparent);\n}\n\n.pcw-close:hover {\n  background: color-mix(in srgb, var(--pcw-accent-contrast) 32%, transparent);\n  color: var(--pcw-accent-contrast);\n  transform: translateY(-1px);\n}\n\n.pcw-clear {\n  border: 1px solid color-mix(in srgb, var(--pcw-accent-contrast) 44%, transparent);\n  background: color-mix(in srgb, var(--pcw-accent-contrast) 14%, transparent);\n  color: color-mix(in srgb, var(--pcw-accent-contrast) 95%, transparent);\n  padding: 0 10px;\n  font-size: 12px;\n  font-weight: 600;\n  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pcw-accent-contrast) 8%, transparent);\n}\n\n.pcw-clear:hover {\n  border-color: color-mix(in srgb, var(--pcw-accent-contrast) 68%, transparent);\n  background: color-mix(in srgb, var(--pcw-accent-contrast) 24%, transparent);\n  color: var(--pcw-accent-contrast);\n  transform: translateY(-1px);\n}\n\n.pcw-clear:active,\n.pcw-close:active {\n  transform: translateY(0);\n}\n\n.pcw-header-action:focus-visible {\n  outline: 2px solid color-mix(in srgb, var(--pcw-accent-contrast) 88%, transparent);\n  outline-offset: 2px;\n}\n\n.pcw-body {\n  padding: 10px 12px 12px;\n  display: flex;\n  flex-direction: column;\n  min-height: 0;\n  gap: 8px;\n  flex: 1;\n}\n\n.pcw-turnstile {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  overflow: hidden;\n  clip: rect(0 0 0 0);\n}\n\n.pcw-messages {\n  flex: 1;\n  min-height: 0;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 7px;\n  padding-right: 4px;\n}\n\n.pcw-messages::-webkit-scrollbar {\n  width: 4px;\n}\n\n.pcw-messages::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n.pcw-messages::-webkit-scrollbar-thumb {\n  background: var(--pcw-border-strong);\n  border-radius: 2px;\n}\n\n.pcw-message {\n  max-width: 72%;\n  padding: 4px 9px;\n  border-radius: 10px;\n  font-size: 13px;\n  line-height: 1.35;\n}\n\n.pcw-message-text {\n  white-space: pre-wrap;\n}\n\n.pcw-message.assistant {\n  align-self: flex-start;\n  background: var(--pcw-surface-soft);\n  color: var(--pcw-text);\n  border: 1px solid var(--pcw-border);\n  border-bottom-left-radius: 8px;\n}\n\n.pcw-message.assistant.fallback {\n  background: #1c1410;\n  color: #fbbf24;\n  border: 1px solid #3d2e14;\n}\n\n.pcw-message.assistant.error {\n  background: #1c1010;\n  color: #f87171;\n  border: 1px solid #3d1414;\n}\n\n.pcw-message.user {\n  align-self: flex-end;\n  background:\n    linear-gradient(165deg, color-mix(in srgb, var(--pcw-accent) 14%, var(--pcw-user-bubble)) 0%, var(--pcw-user-bubble) 58%, color-mix(in srgb, var(--pcw-accent-support) 22%, var(--pcw-user-bubble)) 100%);\n  color: var(--pcw-user-text);\n  border: 1px solid color-mix(in srgb, var(--pcw-user-border) 70%, var(--pcw-accent-support));\n  border-bottom-right-radius: 8px;\n}\n\n.pcw-message-note {\n  margin-top: 8px;\n  font-size: 11px;\n  line-height: 1.35;\n  opacity: 0.72;\n}\n\n.pcw-message.typing {\n  min-width: 64px;\n  text-align: center;\n}\n\n.pcw-dots {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n}\n\n.pcw-dots span {\n  width: 6px;\n  height: 6px;\n  border-radius: 999px;\n  background: currentColor;\n  opacity: 0.45;\n  animation: pcw-pulse 0.9s infinite ease-in-out;\n}\n\n.pcw-dots span:nth-child(2) {\n  animation-delay: 0.15s;\n}\n\n.pcw-dots span:nth-child(3) {\n  animation-delay: 0.3s;\n}\n\n.pcw-starters-inline {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  padding: 4px 0 2px;\n  align-self: flex-start;\n  transition: opacity 200ms ease, transform 200ms ease;\n}\n\n.pcw-starters-inline.is-hiding {\n  opacity: 0;\n  transform: translateY(4px);\n  pointer-events: none;\n}\n\n.pcw-starter {\n  border: 1px solid var(--pcw-border-strong);\n  background: var(--pcw-surface-soft);\n  color: var(--pcw-text-soft);\n  border-radius: 999px;\n  font-size: 12px;\n  padding: 5px 11px;\n  cursor: pointer;\n  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;\n  white-space: nowrap;\n}\n\n.pcw-starter:hover {\n  background: color-mix(in srgb, var(--pcw-surface-soft) 72%, var(--pcw-accent-support) 28%);\n  border-color: color-mix(in srgb, var(--pcw-accent-support) 64%, var(--pcw-accent));\n  color: var(--pcw-text);\n}\n\n.pcw-form {\n  display: grid;\n  grid-template-columns: 1fr auto;\n  gap: 10px;\n  align-items: end;\n}\n\n.pcw-visually-hidden {\n  border: 0;\n  clip: rect(0 0 0 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px;\n}\n\n.pcw-input {\n  border: 1px solid var(--pcw-border);\n  background: var(--pcw-surface-alt);\n  border-radius: 14px;\n  padding: 10px 12px;\n  color: var(--pcw-text);\n  resize: none;\n  min-height: 44px;\n  max-height: 120px;\n  font-size: 13px;\n  line-height: 1.45;\n  transition: border-color 160ms ease;\n}\n\n.pcw-input::placeholder {\n  color: var(--pcw-text-muted);\n}\n\n.pcw-input:focus {\n  border-color: var(--pcw-accent);\n  outline: none;\n}\n\n.pcw-send {\n  border: 0;\n  background: var(--pcw-launcher-grad);\n  color: var(--pcw-accent-contrast);\n  min-width: 72px;\n  height: 44px;\n  border-radius: 14px;\n  cursor: pointer;\n  font-size: 13px;\n  font-weight: 600;\n  font-family: \"Space Grotesk\", sans-serif;\n  transition: background 160ms ease, opacity 160ms ease;\n}\n\n.pcw-send:hover:not(:disabled) {\n  background: linear-gradient(136deg, color-mix(in srgb, var(--pcw-accent) 84%, white 16%) 0%, color-mix(in srgb, var(--pcw-accent-support) 82%, white 18%) 100%);\n}\n\n.pcw-send:disabled,\n.pcw-input:disabled,\n.pcw-clear:disabled {\n  cursor: not-allowed;\n  opacity: 0.62;\n}\n\n@keyframes pcw-pulse {\n  0%,\n  80%,\n  100% {\n    opacity: 0.35;\n    transform: translateY(0);\n  }\n  40% {\n    opacity: 0.9;\n    transform: translateY(-1px);\n  }\n}\n\n@keyframes pcw-launcher-ring {\n  0% {\n    opacity: 0.48;\n    transform: scale(1);\n  }\n  70% {\n    opacity: 0;\n    transform: scale(1.22);\n  }\n  100% {\n    opacity: 0;\n    transform: scale(1.22);\n  }\n}\n\n@keyframes pcw-panel-in {\n  from {\n    opacity: 0;\n    transform: translateY(14px) scale(0.97);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n}\n\n@keyframes pcw-panel-out {\n  from {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n  to {\n    opacity: 0;\n    transform: translateY(10px) scale(0.97);\n  }\n}\n\n@media (max-width: 640px) {\n  .pcw-root {\n    right: 12px;\n    bottom: 12px;\n    left: 12px;\n  }\n\n  .pcw-panel {\n    width: 100%;\n    height: min(82vh, 680px);\n    border-radius: 20px;\n  }\n\n  .pcw-launcher {\n    margin-left: auto;\n    display: flex;\n  }\n\n  .pcw-header {\n    padding: 10px 12px 8px;\n  }\n\n  .pcw-body {\n    padding: 8px 10px 10px;\n  }\n\n  .pcw-form {\n    grid-template-columns: 1fr;\n  }\n\n  .pcw-send {\n    width: 100%;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .pcw-launcher::before {\n    animation: none;\n    opacity: 0.28;\n    transform: none;\n  }\n\n  .pcw-launcher::after {\n    transition: none;\n  }\n}\n";
 const EMBED_CONTRACT_VERSION = "1.0.0";
 const WIDGET_GLOBAL_NAME = "PortfolioChatbotWidget";
 const CONFIG_GLOBAL_NAME = "PortfolioChatbotConfig";
@@ -217,7 +217,10 @@ async function ensureTurnstileWidget() {
   if (!container) {
     container = document.createElement("div");
     container.id = TURNSTILE_CONTAINER_ID;
-    container.className = "pcw-turnstile-host";
+    container.setAttribute(
+      "style",
+      "position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0.01;pointer-events:none;overflow:hidden;z-index:-1;",
+    );
     document.body.appendChild(container);
   }
 
@@ -290,14 +293,8 @@ function trackEvent(event, metadata = {}) {
 }
 
 function autoResizeTextarea(textarea) {
-  const minRows = 1;
-  const maxRows = 5;
-  const lineHeight = 20;
-  const nextRows = Math.min(
-    maxRows,
-    Math.max(minRows, Math.ceil(textarea.scrollHeight / lineHeight)),
-  );
-  textarea.rows = nextRows;
+  textarea.style.height = "0px";
+  textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
 }
 
 function typeIntoElement(el, text) {
@@ -565,8 +562,10 @@ async function submitMessage(content) {
         statusCode: response.status,
       });
       const errorCode = payload?.error?.code;
+      const errorMessage =
+        payload?.error?.message || `Request failed with status ${response.status}`;
       throw new Error(
-        `Assistant request failed (${errorCode || response.status}).`,
+        `${errorCode ? `[${errorCode}] ` : ""}${errorMessage}`,
       );
     }
     const reply = payload?.reply?.trim();
@@ -608,12 +607,14 @@ async function submitMessage(content) {
     console.error("[portfolio-chatbot] request failed", error);
     state.hasConnectionIssue = true;
     state.reconnectNotified = false;
+    const detail = String(error?.message || "").trim().slice(0, 180);
     state.conversation.push({
       role: "assistant",
       kind: "error",
       note: "Network or API error",
-      content:
-        "I couldn't reach the portfolio assistant just now. Please retry in a moment.",
+      content: detail
+        ? `I couldn't complete that request. ${detail}`
+        : "I couldn't reach the portfolio assistant just now. You can retry the last question or wait a moment and try again.",
     });
     state.animateNextAssistant = true;
     setStatus("Connection issue. Retry is available.");
@@ -679,7 +680,8 @@ function attachEventHandlers() {
 
 function createMarkup(config) {
   return `
-        <div class="pcw-root" data-theme="${escapeHtml(config.theme)}">
+    <style>${STYLE_TEXT}</style>
+    <div class="pcw-root" data-theme="${escapeHtml(config.theme)}">
       <div
         id="pcw-panel"
         class="pcw-panel"
@@ -811,11 +813,7 @@ function mountWidget(overrides = {}) {
   host.id = WIDGET_HOST_ID;
 
   const shadowRoot = host.attachShadow({ mode: "open" });
-  const stylesheet = document.createElement("link");
-  stylesheet.rel = "stylesheet";
-  stylesheet.href = WIDGET_STYLESHEET_URL;
-  shadowRoot.append(stylesheet);
-  shadowRoot.insertAdjacentHTML("beforeend", createMarkup(config));
+  shadowRoot.innerHTML = createMarkup(config);
   document.body.append(host);
 
   state.mounted = true;
@@ -859,11 +857,38 @@ function unmountWidget() {
 }
 
 function updateConfig(overrides = {}) {
-  state.config = resolveConfig(overrides);
-  if (state.mounted) {
-    unmountWidget();
-    mountWidget(state.config);
+  const previousConfig = state.config;
+  const nextConfig = resolveConfig(overrides);
+
+  state.config = nextConfig;
+
+  if (!state.mounted) {
+    return state.config;
   }
+
+  const onlyThemeChanged =
+    previousConfig.title === nextConfig.title &&
+    previousConfig.subtitle === nextConfig.subtitle &&
+    previousConfig.apiBaseUrl === nextConfig.apiBaseUrl &&
+    previousConfig.analyticsEnabled === nextConfig.analyticsEnabled &&
+    previousConfig.source === nextConfig.source &&
+    previousConfig.turnstileToken === nextConfig.turnstileToken &&
+    previousConfig.turnstileSiteKey === nextConfig.turnstileSiteKey &&
+    JSON.stringify(previousConfig.starterQuestions) ===
+      JSON.stringify(nextConfig.starterQuestions) &&
+    previousConfig.theme !== nextConfig.theme;
+
+  if (onlyThemeChanged) {
+    const root =
+      state.elements.host?.shadowRoot?.querySelector(".pcw-root") || null;
+    if (root) {
+      root.setAttribute("data-theme", nextConfig.theme);
+    }
+    return state.config;
+  }
+
+  unmountWidget();
+  mountWidget(state.config);
   return state.config;
 }
 
