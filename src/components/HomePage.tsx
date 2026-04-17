@@ -108,6 +108,36 @@ export function HomePage() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+    if (revealTargets.length === 0) return
+
+    const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (motionReduced) {
+      revealTargets.forEach((el) => el.classList.add('is-revealed'))
+      return
+    }
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-revealed')
+          revealObserver.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    for (const target of revealTargets) {
+      const delay = target.dataset.revealDelay
+      target.style.setProperty('--reveal-delay', `${Number(delay || 0)}ms`)
+      revealObserver.observe(target)
+    }
+
+    return () => revealObserver.disconnect()
+  }, [])
+
   const glow = sectionGlows[activeSection] ?? sectionGlows['top']
 
   return (
@@ -185,7 +215,7 @@ export function HomePage() {
         <section className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col justify-center px-5 py-12 sm:px-6 sm:py-16 md:px-8 md:py-20">
           <div className="flex flex-col gap-10 sm:gap-12 lg:flex-row lg:items-center lg:gap-10">
             {/* text */}
-            <div className="relative z-10 flex-1 space-y-7">
+            <div className="relative z-10 flex-1 space-y-7 load-in-up">
               <h1 className="hero-title font-headline text-[clamp(2.55rem,10.5vw,6.25rem)] font-black leading-[0.92] tracking-[-0.02em] text-on-surface">
                 Hi, I'm<br />Jason.
               </h1>
@@ -229,7 +259,7 @@ export function HomePage() {
             </div>
 
             {/* photo */}
-            <div className="relative shrink-0 lg:w-[340px] xl:w-[380px]">
+            <div className="relative shrink-0 load-in-up load-in-delay-2 lg:w-[340px] xl:w-[380px]">
               <div className="theme-surface accent-orbit overflow-hidden rounded-2xl border border-surface-container-high">
                 <img
                   src="/photos/edited001v2jpg.jpg"
@@ -280,10 +310,12 @@ export function HomePage() {
             </p>
 
             <div className="grid gap-5 xl:grid-cols-3">
-              {projectCards.map((project) => (
+              {projectCards.map((project, index) => (
                 <article
                   key={project.title}
-                  className="theme-surface accent-card flex h-full flex-col rounded-xl border border-surface-container-high bg-surface-container p-6 transition-colors duration-300 hover:border-primary/45 hover:shadow-[0_20px_48px_color-mix(in_srgb,var(--color-primary)_16%,transparent)]"
+                  data-reveal
+                  data-reveal-delay={index * 70}
+                  className="theme-surface accent-card reveal-card flex h-full flex-col rounded-xl border border-surface-container-high bg-surface-container p-6 transition-colors duration-300 hover:border-primary/45 hover:shadow-[0_20px_48px_color-mix(in_srgb,var(--color-primary)_16%,transparent)]"
                 >
                   {/* card header */}
                   <div className="mb-5 flex items-start justify-between gap-4">
@@ -368,10 +400,12 @@ export function HomePage() {
               03 / Experience
             </p>
             <div className="grid gap-5 md:grid-cols-2">
-              {workExperience.map((role) => (
+              {workExperience.map((role, index) => (
                 <article
                   key={role.title}
-                  className="theme-surface accent-card rounded-xl border border-surface-container-high bg-surface-container p-6"
+                  data-reveal
+                  data-reveal-delay={index * 70}
+                  className="theme-surface accent-card reveal-card rounded-xl border border-surface-container-high bg-surface-container p-6"
                 >
                   <div className="mb-1 flex items-start justify-between gap-4">
                     <h3 className="theme-copy font-headline text-xl font-bold text-on-surface">
@@ -405,8 +439,8 @@ export function HomePage() {
               04 / Technical Skills
             </p>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {skillGroups.map(({ label, items }) => (
-                <div key={label}>
+              {skillGroups.map(({ label, items }, index) => (
+                <div key={label} data-reveal data-reveal-delay={index * 55} className="reveal-card">
                   <h3 className="theme-copy section-kicker mb-3 text-xs font-semibold tracking-[0.18em] uppercase">
                     {label}
                   </h3>
