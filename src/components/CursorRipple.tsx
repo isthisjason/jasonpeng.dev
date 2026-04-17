@@ -54,7 +54,7 @@ const MAX_DRIFT       = 85
 const DARK_RIPPLE_RGB  = '96,165,250'
 const LIGHT_RIPPLE_RGB = '30,64,175'
 const BURST_COUNT      = 12
-const CLICK_DURATION   = 950   // ms — slower, water-drop feel
+const CLICK_DURATION   = 1280  // ms — slower, softer click ripple feel
 const IMPACT_COUNT     = 8     // symbols in heartbeat cluster
 const RING_POOL_SIZE   = 120   // pre-generated chars per ring (indexed dynamically)
 const RING_MAX_COUNT   = 100   // max symbols per ring (golden-angle pre-baked)
@@ -65,8 +65,8 @@ const GOLDEN_ANGLE     = 2.39996323  // radians ≈ 137.508°
 // Symbol ring definitions — arcSpacing keeps density constant as radius grows
 const RING_DEFS = [
   { delay: 0,    maxR: 68,  arcSpacing: 10, fadePow: 2.2 },
-  { delay: 0.09, maxR: 110, arcSpacing: 10, fadePow: 1.9 },
-  { delay: 0.18, maxR: 152, arcSpacing: 10, fadePow: 1.6 },
+  { delay: 0.14, maxR: 110, arcSpacing: 10, fadePow: 1.9 },
+  { delay: 0.28, maxR: 152, arcSpacing: 10, fadePow: 1.6 },
 ] as const
 
 function randChar() {
@@ -159,7 +159,7 @@ export function CursorRipple() {
       // Radial burst in document coords
       const particles: BurstParticle[] = Array.from({ length: BURST_COUNT }, (_, i) => {
         const angle = (i / BURST_COUNT) * Math.PI * 2
-        const spd   = 2.2 + Math.random() * 1.8
+        const spd   = 1.5 + Math.random() * 1.2
         return {
           x: docX, y: docY, spawnX: docX, spawnY: docY,
           char:     randChar(),
@@ -167,7 +167,7 @@ export function CursorRipple() {
           vx: Math.cos(angle) * spd,
           vy: Math.sin(angle) * spd,
           life: 0,
-          speed:    0.022 + Math.random() * 0.008,
+          speed:    0.016 + Math.random() * 0.006,
           friction: 0.93,
           maxDrift: 105,
         }
@@ -233,8 +233,8 @@ export function CursorRipple() {
 
         // ── 1. Impact cluster: symbol ring that pulses like a heartbeat ──
 
-        // First beat: t 0 → 0.14
-        const b1 = Math.max(0, Math.min(1, t / 0.14))
+        // First beat: t 0 → 0.2
+        const b1 = Math.max(0, Math.min(1, t / 0.2))
         if (b1 > 0) {
           const pulse  = Math.sin(b1 * Math.PI)
           const radius = 13 * pulse
@@ -255,8 +255,8 @@ export function CursorRipple() {
           ctx.shadowBlur = 0
         }
 
-        // Second beat echo: t 0.18 → 0.33 (softer, offset rotation)
-        const b2 = Math.max(0, Math.min(1, (t - 0.18) / 0.15))
+        // Second beat echo: t 0.28 → 0.46 (softer, offset rotation)
+        const b2 = Math.max(0, Math.min(1, (t - 0.28) / 0.18))
         if (b2 > 0) {
           const pulse  = Math.sin(b2 * Math.PI)
           const radius = 9 * pulse
