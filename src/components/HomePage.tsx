@@ -295,7 +295,7 @@ export function HomePage() {
                   Bachelor of Science in Computer Science
                 </p>
                 <p className="theme-copy text-sm text-on-surface-variant/70">
-                  GPA: 3.49
+                  GPA: 3.54
                 </p>
               </div>
             </div>
