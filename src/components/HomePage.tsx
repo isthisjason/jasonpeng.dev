@@ -51,13 +51,13 @@ const projectCards = [
     href: 'https://github.com/isthisjason/cashflowgo',
     hrefLabel: 'github.com/isthisjason/cashflowgo',
     description:
-      'Built and deployed a full-stack finance app with session auth, CSRF/CORS protections, and profile based workflows.',
+      'Built and deployed a full-stack finance app on AWS with session auth, CSRF/CORS protections, and profile based workflows.',
     highlights: [
-      'Implemented transaction tracking, budget management, subscription management, and monthly CSV export with end to end API integration.',
-      'Improved production readiness through rate limiting, secure cookie/header settings, and deployment config across Render and Cloudflare Pages.',
+      'Dockerized the Django backend and deployed it on ECS/Fargate using ECR, an Application Load Balancer, and RDS PostgreSQL for persistent production data.',
+      'Configured CloudFront path based routing so the same HTTPS domain serves the React frontend from S3 and forwards /api/* traffic to the Django REST API.',
     ],
-    tech: ['React', 'Django', 'Git', 'Chart.js', 'HTML/CSS'],
-    demoHref: 'https://cashflowgofrontend.pages.dev/',
+    tech: ['React', 'Django', 'AWS', 'Docker', 'ECS/Fargate', 'S3/CloudFront', 'RDS PostgreSQL'],
+    demoHref: 'https://d2yc928ej87ojb.cloudfront.net/',
   },
 ]
 
