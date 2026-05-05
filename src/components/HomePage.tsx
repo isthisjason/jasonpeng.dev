@@ -28,7 +28,7 @@ const projectCards = [
       'Integrated an embedded LLM chatbot enabling visitors to explore projects, technical skills, and background through conversation.',
     highlights: [
       'Hardened the backend for production: strict input validation, CORS allowlists, rate limiting and abuse controls, LLM refusal behavior, observability, and secure secret management across environments.',
-      'Ships as a script-loaded widget from its own Cloudflare Pages + Worker project, keeping the portfolio site simple and independently deployable.',
+      'Ships as a small embedded widget from its own Cloudflare Pages and Worker project, keeping the portfolio site simple and independently deployable.',
     ],
     tech: ['JavaScript', 'Cloudflare Workers', 'OpenAI API', 'Vite', 'Prompt Engineering'],
   },
@@ -38,7 +38,7 @@ const projectCards = [
     href: 'https://prairieambercattery.com',
     hrefLabel: 'prairieambercattery.com',
     description:
-      'Built and deployed a production web platform with role based admin tools and a multi-step application workflow.',
+      'Built and deployed a production web platform with role based admin tools and a guided application workflow.',
     highlights: [
       'Implemented security hardening with server sessions, validation, rate limiting, CSRF/origin protections, and audit logging.',
       'Added privacy and reliability workflows including retention purge, data export/delete requests, and backup/restore drills.',
@@ -51,10 +51,10 @@ const projectCards = [
     href: 'https://github.com/isthisjason/cashflowgo',
     hrefLabel: 'github.com/isthisjason/cashflowgo',
     description:
-      'Built and deployed a full-stack finance app on AWS with session auth, CSRF/CORS protections, and profile based workflows.',
+      'Built and deployed a finance app on AWS with session auth, CSRF/CORS protections, and profile based workflows.',
     highlights: [
       'Dockerized the Django backend and deployed it on ECS/Fargate using ECR, an Application Load Balancer, and RDS PostgreSQL for persistent production data.',
-      'Configured CloudFront path based routing so the same HTTPS domain serves the React frontend from S3 and forwards /api/* traffic to the Django REST API.',
+      'Configured CloudFront routing so one HTTPS domain serves the React frontend from S3 and forwards /api/* traffic to the Django REST API.',
     ],
     tech: ['React', 'Django', 'AWS', 'Docker', 'ECS/Fargate', 'S3/CloudFront', 'RDS PostgreSQL'],
     demoHref: 'https://d2yc928ej87ojb.cloudfront.net/',
@@ -87,8 +87,8 @@ const workExperience = [
 const skillGroups = [
   { label: 'Languages', items: ['Python', 'Java', 'C', 'RISC-V', 'Scala', 'TypeScript', 'JavaScript'] },
   { label: 'Frameworks / Libraries', items: ['React', 'TanStack Router/Start', 'Django', 'Tailwind CSS', 'PyTorch', 'Chart.js'] },
-  { label: 'Developer Tools', items: ['Git', 'Linux', 'Vim', 'Make', 'npm'] },
-  { label: 'Platforms', items: ['Cloudflare Workers', 'Cloudflare Pages', 'Render'] },
+  { label: 'Developer Tools', items: ['Git', 'Docker', 'Docker Compose', 'Linux', 'Vim', 'Make', 'npm'] },
+  { label: 'Platforms', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'Cloudflare Workers', 'Cloudflare Pages', 'Render'] },
 ]
 
 export function HomePage() {
