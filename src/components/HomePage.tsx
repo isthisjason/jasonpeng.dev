@@ -21,42 +21,42 @@ const heroHeading = "Hi, I'm Jason."
 const projectCards = [
   {
     title: 'Portfolio LLM Assistant',
-    eyebrow: 'Production',
+    eyebrow: 'Apr 2026 to Present',
     hrefLabel: null as string | null,
     demoAction: openChatbot,
     description:
-      'Integrated an embedded LLM chatbot enabling visitors to explore projects, technical skills, and background through conversation.',
+      'Built a RAG-powered chatbot that lets visitors explore my projects through accurate, grounded responses.',
     highlights: [
-      'Hardened the backend for production: strict input validation, CORS allowlists, rate limiting and abuse controls, LLM refusal behavior, observability, and secure secret management across environments.',
-      'Ships as a small embedded widget from its own Cloudflare Pages and Worker project, keeping the portfolio site simple and independently deployable.',
+      'Integrated Anthropic Claude API, OpenAI API, and a retrieval pipeline behind a public portfolio assistant.',
+      'Added strict input validation, CORS allowlists, rate limiting, secure secret management, CI/CD, and observability for the Cloudflare Worker endpoint.',
     ],
-    tech: ['JavaScript', 'Cloudflare Workers', 'OpenAI API', 'Vite', 'Prompt Engineering'],
+    tech: ['Python', 'TypeScript', 'Anthropic Claude API', 'OpenAI API', 'Node.js', 'Cloudflare Workers', 'REST APIs', 'CI/CD'],
   },
   {
     title: 'Prairie Amber Cattery',
-    eyebrow: 'Production',
+    eyebrow: 'Mar 2026 to Present',
     href: 'https://prairieambercattery.com',
     hrefLabel: 'prairieambercattery.com',
     description:
-      'Built and deployed a production web platform with role based admin tools and a guided application workflow.',
+      'Built and deployed a React and TypeScript platform for multi-step workflows and daily operations.',
     highlights: [
-      'Implemented security hardening with server sessions, validation, rate limiting, CSRF/origin protections, and audit logging.',
-      'Added privacy and reliability workflows including retention purge, data export/delete requests, and backup/restore drills.',
+      'Implemented role-based access controls, audit logging, server sessions, CSRF protections, rate limiting, and strict input validation.',
+      'Owned features end to end through Agile cycles and peer code reviews, keeping the codebase maintainable as scope and user feedback evolved.',
     ],
-    tech: ['React', 'TypeScript', 'TanStack Router/Start', 'Tailwind CSS', 'Node.js'],
+    tech: ['TypeScript', 'React', 'Node.js', 'TanStack Router', 'Tailwind CSS', 'REST APIs', 'Git', 'CI/CD'],
   },
   {
     title: 'CashFlowGo',
-    eyebrow: 'Live Demo',
+    eyebrow: 'Sep 2024 to Dec 2024',
     href: 'https://github.com/isthisjason/cashflowgo',
     hrefLabel: 'github.com/isthisjason/cashflowgo',
     description:
-      'Built and deployed a finance app on AWS with session auth, CSRF/CORS protections, and profile based workflows.',
+      'Dockerized and deployed a full-stack Django and React finance app to AWS.',
     highlights: [
-      'Dockerized the Django backend and deployed it on ECS/Fargate using ECR, an Application Load Balancer, and RDS PostgreSQL for persistent production data.',
-      'Configured CloudFront routing so one HTTPS domain serves the React frontend from S3 and forwards /api/* traffic to the Django REST API.',
+      'Used ECS/Fargate, RDS, S3, and CloudFront to create a production-ready system with secure session authentication.',
+      'Designed a PostgreSQL schema for transactions, budgets, and subscriptions with authenticated REST APIs, CI/CD pipelines, and automated tests.',
     ],
-    tech: ['React', 'Django', 'AWS', 'Docker', 'ECS/Fargate', 'S3/CloudFront', 'RDS PostgreSQL'],
+    tech: ['React', 'TypeScript', 'Python', 'Django', 'PostgreSQL', 'AWS ECS/Fargate', 'S3', 'CloudFront', 'RDS', 'Docker', 'REST APIs'],
     demoHref: 'https://d2yc928ej87ojb.cloudfront.net/',
   },
 ]
@@ -85,10 +85,10 @@ const workExperience = [
 ]
 
 const skillGroups = [
-  { label: 'Languages', items: ['Python', 'Java', 'C', 'RISC-V', 'Scala', 'TypeScript', 'JavaScript'] },
-  { label: 'Frameworks / Libraries', items: ['React', 'TanStack Router/Start', 'Django', 'Tailwind CSS', 'PyTorch', 'Chart.js'] },
-  { label: 'Developer Tools', items: ['Git', 'Docker', 'Docker Compose', 'Linux', 'Vim', 'Make', 'npm'] },
-  { label: 'Platforms', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'Cloudflare Workers', 'Cloudflare Pages', 'Render'] },
+  { label: 'Frontend', items: ['React', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'TanStack Router', 'Responsive Design'] },
+  { label: 'Backend / APIs', items: ['Node.js', 'Django', 'Python', 'RESTful API Design', 'Microservices', 'CSRF/CORS Hardening', 'Session Auth', 'Rate Limiting', 'PostgreSQL', 'SQL'] },
+  { label: 'Cloud / Infrastructure', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'ALB', 'Docker', 'CI/CD Pipelines', 'Git', 'GitHub', 'Linux', 'Automated Testing', 'Agile/Scrum'] },
+  { label: 'AI / Dev Tools', items: ['Anthropic Claude API', 'OpenAI API', 'RAG Pipelines', 'Prompt Engineering', 'Claude Code', 'Codex'] },
 ]
 
 export function HomePage() {

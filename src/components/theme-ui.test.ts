@@ -15,6 +15,6 @@ describe('theme UI configuration', () => {
   it('exports the portfolio content used by the homepage', () => {
     expect(heroHeading).toBe("Hi, I'm Jason.")
     expect(projectCards.some((project) => project.title === 'Portfolio LLM Assistant')).toBe(true)
-    expect(skillGroups.some((group) => group.label === 'Languages')).toBe(true)
+    expect(skillGroups.some((group) => group.label === 'Frontend')).toBe(true)
   })
 })
