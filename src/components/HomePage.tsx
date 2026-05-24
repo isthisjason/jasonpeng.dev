@@ -262,7 +262,7 @@ export function HomePage() {
             <div className="relative shrink-0 load-in-up load-in-delay-2 lg:w-[340px] xl:w-[380px]">
               <div className="theme-surface accent-orbit overflow-hidden rounded-2xl border border-surface-container-high">
                 <img
-                  src="/photos/edited001v2jpg.jpg"
+                  src="/photos/IMG_49582.png"
                   alt="Jason Peng portrait"
                   className="block h-full min-h-[18rem] w-full object-cover object-center sm:min-h-[22rem] md:min-h-[26rem]"
                   loading="eager"

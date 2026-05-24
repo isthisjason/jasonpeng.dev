@@ -22,3 +22,4 @@ todos.json
 public/photos/*
 !public/photos/.gitkeep
 !public/photos/edited001v2jpg.jpg
+!public/photos/IMG_49582.png
