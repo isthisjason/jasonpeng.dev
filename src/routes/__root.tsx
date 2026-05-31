@@ -69,7 +69,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(181,86,47,0.22)]">
         {children}
         <ThemeToggle mode={mode} onToggle={toggleMode} />
         <PortfolioChatbotEmbed mode={mode} />
