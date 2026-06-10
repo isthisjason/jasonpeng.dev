@@ -512,14 +512,6 @@ export function HomePage() {
         </section>
       </main>
 
-      {/* ── FOOTER ──────────────────────────────────────────── */}
-      <footer className="theme-surface border-t border-surface-container-high/30 py-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-center px-5 text-center sm:px-6 md:px-8">
-          <span className="theme-copy font-headline text-xs font-bold tracking-[0.12em] text-on-surface-variant/50 uppercase md:tracking-[0.18em]">
-            Why hello there, thanks for scrolling all the way down! 
-          </span>
-        </div>
-      </footer>
     </>
   )
 }
