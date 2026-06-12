@@ -59,6 +59,21 @@ const projectCards = [
     tech: ['React', 'TypeScript', 'Python', 'Django', 'PostgreSQL', 'AWS ECS/Fargate', 'S3', 'CloudFront', 'RDS', 'Docker', 'REST APIs'],
     demoHref: 'https://d2yc928ej87ojb.cloudfront.net/',
   },
+  {
+    title: 'SignalAttention',
+    eyebrow: 'May 2026 to Present',
+    href: 'https://github.com/isthisjason/signal-attention',
+    hrefLabel: 'github.com/isthisjason/signal-attention',
+    description:
+      'Built a full-stack trading research sandbox for importing market data, managing strategies, and running repeatable backtests.',
+    highlights: [
+      'Built Spring Boot, React, FastAPI, and PostgreSQL services for market data imports, strategy workflows, and backtest execution.',
+      'Designed relational schemas and REST APIs for strategies, candles, backtest runs, trades, paper trading sessions, risk policies, audit events, and dashboard summaries.',
+      'Implemented risk scoring, market regime classification, anomaly checks, and optional PyTorch sequence model experiments with reproducible reports and model cards.',
+      'Added Docker Compose orchestration, backend, ML, and frontend tests, plus smoke scripts for stack, API, dashboard, and simulation regressions.',
+    ],
+    tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Flyway', 'REST APIs', 'PyTorch', 'Vitest', 'pytest'],
+  },
 ]
 
 const workExperience = [

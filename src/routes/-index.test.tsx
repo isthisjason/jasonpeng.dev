@@ -10,6 +10,7 @@ describe('HomePage', () => {
         'Portfolio LLM Assistant',
         'Prairie Amber Cattery',
         'CashFlowGo',
+        'SignalAttention',
       ]),
     )
   })
