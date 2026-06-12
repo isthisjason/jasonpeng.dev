@@ -13,5 +13,9 @@ describe('HomePage', () => {
         'SignalAttention',
       ]),
     )
+    expect(projectCards.find((project) => project.title === 'Portfolio LLM Assistant')?.href).toBe('https://github.com/isthisjason/portfolio-chatbot')
+    expect(projectCards.find((project) => project.title === 'CashFlowGo')?.href).toBe('https://github.com/isthisjason/cashflowgo')
+    expect(projectCards.find((project) => project.title === 'SignalAttention')?.href).toBe('https://github.com/isthisjason/signal-attention')
+    expect(projectCards.find((project) => project.title === 'Prairie Amber Cattery')?.href).toBe('https://prairieambercattery.com')
   })
 })

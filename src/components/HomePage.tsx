@@ -22,7 +22,8 @@ const projectCards = [
   {
     title: 'Portfolio LLM Assistant',
     eyebrow: 'Apr 2026 to Present',
-    hrefLabel: null as string | null,
+    href: 'https://github.com/isthisjason/portfolio-chatbot',
+    hrefLabel: 'github.com/isthisjason/portfolio-chatbot',
     demoAction: openChatbot,
     description:
       'Built a RAG-powered chatbot that lets visitors explore my projects through accurate, grounded responses.',
@@ -57,7 +58,6 @@ const projectCards = [
       'Designed a PostgreSQL schema for transactions, budgets, and subscriptions with authenticated REST APIs, CI/CD pipelines, and automated tests.',
     ],
     tech: ['React', 'TypeScript', 'Python', 'Django', 'PostgreSQL', 'AWS ECS/Fargate', 'S3', 'CloudFront', 'RDS', 'Docker', 'REST APIs'],
-    demoHref: 'https://d2yc928ej87ojb.cloudfront.net/',
   },
   {
     title: 'SignalAttention',
