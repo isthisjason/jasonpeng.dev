@@ -233,11 +233,23 @@ export function HomePage() {
                 Hi, I'm<br />Jason.
               </h1>
 
-              <p className="theme-copy hero-accent-line max-w-md text-base leading-relaxed text-on-surface-variant sm:text-lg">
-                I am a software developer who enjoys solving real problems.
-                Whether it's a tricky UI, wiring up an API, or figuring out
-                why something broke in prod.
-              </p>
+              <div className="theme-surface hero-code-card max-w-full overflow-hidden rounded-xl border border-surface-container-high bg-surface-container/85 shadow-[var(--interactive-shadow)] sm:max-w-xl">
+                <div className="flex items-center gap-2 border-b border-surface-container-high/70 px-4 py-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" aria-hidden="true" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" aria-hidden="true" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" aria-hidden="true" />
+                </div>
+                <pre className="m-0 overflow-x-auto px-4 py-4 text-[0.76rem] leading-relaxed text-on-surface sm:text-sm"><code>{`try {
+  dreamJob.apply();
+  dreamJob.get();
+} catch (OverqualifiedException e) {
+  // add more side projects
+} catch (UnderqualifiedException e) {
+  // also add more side projects
+} finally {
+  keepBuilding();
+}`}</code></pre>
+              </div>
 
               <div className="flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap">
                 <a
