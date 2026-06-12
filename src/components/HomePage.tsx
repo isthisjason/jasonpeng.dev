@@ -304,7 +304,7 @@ export function HomePage() {
         </div>
 
         {/* ── EDUCATION ───────────────────────────────────────── */}
-        <section id="about" className="theme-surface relative bg-section-mid py-12 sm:py-14 md:py-16">
+        <section id="about" className="theme-surface relative border-t border-surface-container-high/30 bg-section-mid py-12 sm:py-14 md:py-16">
           <div className="mx-auto max-w-7xl px-5 sm:px-6 md:px-8">
             <p className="theme-copy section-kicker mb-6 text-xs font-semibold tracking-[0.25em] uppercase">
               01 / Education
@@ -486,7 +486,7 @@ export function HomePage() {
         </section>
 
         {/* ── CONTACT ─────────────────────────────────────────── */}
-        <section id="contact" className="theme-surface relative bg-section-raised py-14 sm:py-16 md:py-24">
+        <section id="contact" className="theme-surface relative border-t border-surface-container-high/30 bg-section-raised py-14 sm:py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-6 md:px-8">
             <p className="theme-copy section-kicker mb-6 text-xs font-semibold tracking-[0.25em] uppercase">
               05 / Contact
