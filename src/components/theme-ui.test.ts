@@ -16,5 +16,7 @@ describe('theme UI configuration', () => {
     expect(heroHeading).toBe("Hi, I'm Jason.")
     expect(projectCards.some((project) => project.title === 'Portfolio LLM Assistant')).toBe(true)
     expect(skillGroups.some((group) => group.label === 'Frontend')).toBe(true)
+    expect(skillGroups.find((group) => group.label === 'Backend / APIs')?.items).toEqual(expect.arrayContaining(['Java', 'Spring Boot', 'FastAPI']))
+    expect(skillGroups.flatMap((group) => group.items)).toEqual(expect.arrayContaining(['PyTorch', 'pytest', 'Vitest']))
   })
 })
