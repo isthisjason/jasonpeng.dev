@@ -20,8 +20,21 @@ const heroHeading = "Hi, I'm Jason."
 
 const projectCards = [
   {
+    title: 'SignalAttention',
+    eyebrow: 'May 2026 to Present',
+    href: 'https://github.com/isthisjason/signal-attention',
+    hrefLabel: 'github.com/isthisjason/signal-attention',
+    description:
+      'Built a full-stack trading research sandbox for importing market data, managing strategies, and running repeatable backtests.',
+    highlights: [
+      'Built Spring Boot, React, FastAPI, and PostgreSQL services for market data imports, strategy workflows, and backtest execution.',
+      'Implemented a PyTorch transformer-style market regime classifier over candle-window sequences using feature normalization, positional encoding, dropout, validation splits, early stopping, and CPU-safe training controls.',
+    ],
+    tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Flyway', 'REST APIs', 'PyTorch', 'Vitest', 'pytest'],
+  },
+  {
     title: 'Portfolio LLM Assistant',
-    eyebrow: 'Apr 2026 to Present',
+    eyebrow: 'Apr 2026',
     href: 'https://github.com/isthisjason/portfolio-chatbot',
     hrefLabel: 'github.com/isthisjason/portfolio-chatbot',
     demoAction: openChatbot,
@@ -58,21 +71,6 @@ const projectCards = [
       'Designed a PostgreSQL schema for transactions, budgets, and subscriptions with authenticated REST APIs, CI/CD pipelines, and automated tests.',
     ],
     tech: ['React', 'TypeScript', 'Python', 'Django', 'PostgreSQL', 'AWS ECS/Fargate', 'S3', 'CloudFront', 'RDS', 'Docker', 'REST APIs'],
-  },
-  {
-    title: 'SignalAttention',
-    eyebrow: 'May 2026 to Present',
-    href: 'https://github.com/isthisjason/signal-attention',
-    hrefLabel: 'github.com/isthisjason/signal-attention',
-    description:
-      'Built a full-stack trading research sandbox for importing market data, managing strategies, and running repeatable backtests.',
-    highlights: [
-      'Built Spring Boot, React, FastAPI, and PostgreSQL services for market data imports, strategy workflows, and backtest execution.',
-      'Designed relational schemas and REST APIs for strategies, candles, backtest runs, trades, paper trading sessions, risk policies, audit events, and dashboard summaries.',
-      'Implemented risk scoring, market regime classification, anomaly checks, and optional PyTorch sequence model experiments with reproducible reports and model cards.',
-      'Added Docker Compose orchestration, backend, ML, and frontend tests, plus smoke scripts for stack, API, dashboard, and simulation regressions.',
-    ],
-    tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Flyway', 'REST APIs', 'PyTorch', 'Vitest', 'pytest'],
   },
 ]
 
@@ -493,18 +491,6 @@ export function HomePage() {
                 className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
               >
                 shuangzp@gmail.com
-                <ArrowRight
-                  aria-hidden="true"
-                  className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
-                />
-              </a>
-              <a
-                href="https://github.com/isthisjason"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-link group min-h-[44px] items-center gap-2 break-all font-semibold text-on-surface sm:break-normal"
-              >
-                github.com/isthisjason
                 <ArrowRight
                   aria-hidden="true"
                   className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
