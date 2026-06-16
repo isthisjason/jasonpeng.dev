@@ -239,7 +239,7 @@ export function HomePage() {
                   <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" aria-hidden="true" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" aria-hidden="true" />
                 </div>
-                <pre className="m-0 overflow-x-auto px-4 py-4 text-[0.76rem] leading-relaxed text-on-surface sm:text-sm"><code>{`try {
+                <pre className="m-0 overflow-x-auto whitespace-pre-wrap break-words px-4 py-4 text-[0.76rem] leading-relaxed text-on-surface sm:text-sm"><code>{`try {
   dreamJob.apply();
   dreamJob.get();
 } catch (OverqualifiedException e) {
@@ -289,6 +289,8 @@ export function HomePage() {
                 <img
                   src="/photos/IMG_49582.png"
                   alt="Jason Peng portrait"
+                  width={1700}
+                  height={2100}
                   className="block h-full min-h-[18rem] w-full object-cover object-center sm:min-h-[22rem] md:min-h-[26rem]"
                   loading="eager"
                 />
@@ -340,10 +342,10 @@ export function HomePage() {
                   key={project.title}
                   data-reveal
                   data-reveal-delay={index * 70}
-                  className="theme-surface accent-card reveal-card flex h-full flex-col rounded-xl border border-surface-container-high bg-surface-container p-6 transition-colors duration-300 hover:border-primary/45 hover:shadow-[0_20px_48px_color-mix(in_srgb,var(--color-primary)_16%,transparent)]"
+                  className="theme-surface accent-card reveal-card flex h-full flex-col rounded-xl border border-surface-container-high bg-surface-container p-5 transition-colors duration-300 hover:border-primary/45 hover:shadow-[0_20px_48px_color-mix(in_srgb,var(--color-primary)_16%,transparent)] sm:p-6"
                 >
                   {/* card header */}
-                  <div className="mb-5 flex items-start justify-between gap-4">
+                  <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                     <div>
                       <p className="theme-copy section-kicker mb-1.5 text-xs font-semibold tracking-[0.2em] uppercase">
                         {project.eyebrow}
@@ -430,9 +432,9 @@ export function HomePage() {
                   key={role.title}
                   data-reveal
                   data-reveal-delay={index * 70}
-                  className="theme-surface accent-card reveal-card rounded-xl border border-surface-container-high bg-surface-container p-6"
+                  className="theme-surface accent-card reveal-card rounded-xl border border-surface-container-high bg-surface-container p-5 sm:p-6"
                 >
-                  <div className="mb-1 flex items-start justify-between gap-4">
+                  <div className="mb-1 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                     <h3 className="theme-copy font-headline text-xl font-bold text-on-surface">
                       {role.title}
                     </h3>
