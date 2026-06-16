@@ -97,7 +97,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image:alt',
-        content: 'JP monogram app icon for Jason Peng',
+        content: 'Blue robot favicon for Jason Peng',
       },
       {
         name: 'twitter:card',
@@ -117,7 +117,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'twitter:image:alt',
-        content: 'JP monogram app icon for Jason Peng',
+        content: 'Blue robot favicon for Jason Peng',
       },
     ],
     links: [
