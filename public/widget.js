@@ -18,7 +18,7 @@ const DEFAULT_CONFIG = {
   turnstileSiteKey: "",
   theme: "dark",
   starterQuestions: [
-    "What kind of engineer is Jason?",
+    "What kind of developer is Jason?",
     "Which project best demonstrates full-stack ownership?",
     "What shows his security and production readiness?",
   ],

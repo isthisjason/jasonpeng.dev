@@ -7,11 +7,11 @@ import { CursorRipple } from '../components/CursorRipple'
 import ThemeToggle, { type ThemeMode } from '../components/ThemeToggle'
 
 const siteUrl = 'https://jasonpeng.dev'
-const siteTitle = 'Jason Peng | Full-Stack Software Engineer'
+const siteTitle = 'Jason Peng | Full-Stack Software Developer'
 const siteDescription =
-  'Jason Peng is a full-stack software engineer and Computer Science graduate building React, TypeScript, Java, Python, cloud, security, and AI-assisted product systems.'
+  'Jason Peng is a full-stack software developer and Computer Science graduate building React, TypeScript, Java, Python, cloud, security, and AI-assisted product systems.'
 const siteKeywords =
-  'Jason Peng, full-stack software engineer, software developer portfolio, React, TypeScript, Java, Spring Boot, Python, FastAPI, Cloudflare Workers, AWS, PostgreSQL, security hardening, RAG chatbot, PyTorch'
+  'Jason Peng, full-stack software developer, software developer portfolio, React, TypeScript, Java, Spring Boot, Python, FastAPI, Cloudflare Workers, AWS, PostgreSQL, security hardening, RAG chatbot, PyTorch'
 const socialImage = `${siteUrl}/logo512.png`
 
 export const Route = createRootRoute({

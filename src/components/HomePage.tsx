@@ -101,7 +101,7 @@ const skillGroups = [
   { label: 'Frontend', items: ['React', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'TanStack Router', 'Responsive Design', 'Vitest'] },
   { label: 'Backend / APIs', items: ['Java', 'Spring Boot', 'Node.js', 'Django', 'FastAPI', 'Python', 'RESTful API Design', 'Microservices', 'JPA', 'Flyway', 'CSRF/CORS Hardening', 'Session Auth', 'Rate Limiting', 'PostgreSQL', 'SQL'] },
   { label: 'Cloud / Infrastructure', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'ALB', 'Docker', 'CI/CD Pipelines', 'Git', 'GitHub', 'Linux', 'Automated Testing', 'Agile/Scrum', 'pytest'] },
-  { label: 'AI / Dev Tools', items: ['Anthropic Claude API', 'OpenAI API', 'RAG Pipelines', 'PyTorch', 'Prompt Engineering', 'Claude Code', 'Codex'] },
+  { label: 'AI / Dev Tools', items: ['Anthropic Claude API', 'OpenAI API', 'RAG Pipelines', 'PyTorch', 'Prompt Design', 'Claude Code', 'Codex'] },
 ]
 
 export function HomePage() {
