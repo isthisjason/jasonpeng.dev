@@ -128,6 +128,7 @@ body,
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -148,6 +149,7 @@ main[id] {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--color-on-surface);
   font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   background-color: var(--page-bg);
@@ -165,6 +167,27 @@ body {
 @media (max-width: 768px) {
   body {
     background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle-button {
+    bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    left: max(0.75rem, env(safe-area-inset-left)) !important;
+    min-width: 44px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .theme-toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 }
 

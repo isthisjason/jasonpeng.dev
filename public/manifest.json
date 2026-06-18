@@ -1,30 +1,39 @@
 {
   "short_name": "Jason Peng",
-  "name": "Jason Peng Portfolio",
+  "name": "Jason Peng | Full-Stack Software Developer",
+  "description": "Portfolio for Jason Peng, a full-stack software developer building React, TypeScript, Java, Python, cloud, security, and AI-assisted product systems.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "categories": [
+    "portfolio",
+    "developer",
+    "technology"
+  ],
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "/favicon.svg",
       "type": "image/svg+xml",
       "sizes": "any"
     },
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#206393",
-  "background_color": "#f8f9fa"
+  "theme_color": "#b5562f",
+  "background_color": "#110f0b"
 }
