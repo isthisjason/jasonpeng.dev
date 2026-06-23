@@ -25,10 +25,10 @@ const projectCards = [
     href: 'https://github.com/isthisjason/signal-attention',
     hrefLabel: 'github.com/isthisjason/signal-attention',
     description:
-      'Built a full-stack trading research sandbox for importing market data, managing strategies, and running repeatable backtests.',
+      'A three-service full-stack ML research workbench for market-regime analysis, backtesting, paper-trading simulation, and audit-ready experimentation.',
     highlights: [
-      'Built Spring Boot, React, FastAPI, and PostgreSQL services for market data imports, strategy workflows, and backtest execution.',
-      'Implemented a PyTorch transformer-style market regime classifier over candle-window sequences using feature normalization, positional encoding, dropout, validation splits, early stopping, and CPU-safe training controls.',
+      'Compared attention-based market-regime analysis against SMA and rule-based baselines with persisted backtests, replay workflows, and audit trails.',
+      'Added 150+ automated tests and an end-to-end smoke demo validating 20+ workflow steps across inference, backtesting, paper replay, model readiness, assistant proposals, and audit events.',
     ],
     tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Flyway', 'REST APIs', 'PyTorch', 'Vitest', 'pytest'],
   },
@@ -39,10 +39,10 @@ const projectCards = [
     hrefLabel: 'github.com/isthisjason/portfolio-chatbot',
     demoAction: openChatbot,
     description:
-      'Built a RAG-powered chatbot that lets visitors explore my projects through accurate, grounded responses.',
+      'A standalone portfolio chatbot and embeddable widget that answers recruiter questions using structured portfolio context.',
     highlights: [
-      'Integrated Anthropic Claude API, OpenAI API, and a retrieval pipeline behind a public portfolio assistant.',
-      'Added strict input validation, CORS allowlists, rate limiting, secure secret management, CI/CD, and observability for the Cloudflare Worker endpoint.',
+      'Built 14 Worker modules, 8 structured portfolio context modules, and a Shadow DOM widget embeddable independently from the main portfolio site.',
+      'Designed chat, events, and health endpoints with CORS allowlists, request validation, Turnstile support, rate limits, duplicate-message checks, provider fallbacks, and structured logging.',
     ],
     tech: ['Python', 'TypeScript', 'Anthropic Claude API', 'OpenAI API', 'Node.js', 'Cloudflare Workers', 'REST APIs', 'CI/CD'],
   },
@@ -52,10 +52,10 @@ const projectCards = [
     href: 'https://prairieambercattery.com',
     hrefLabel: 'prairieambercattery.com',
     description:
-      'Built and deployed a React and TypeScript platform for multi-step workflows and daily operations.',
+      'A production-oriented TanStack Start platform for applications, admin operations, content management, and secure owner workflows.',
     highlights: [
-      'Implemented role-based access controls, audit logging, server sessions, CSRF protections, rate limiting, and strict input validation.',
-      'Owned features end to end through Agile cycles and peer code reviews, keeping the codebase maintainable as scope and user feedback evolved.',
+      'Built 38 routed pages/endpoints, including 16 API routes and 12 admin screens for applications, accounts, FAQs, traffic, audit logs, site content, and image management.',
+      'Hardened the app with role-based access, session auth, Turnstile checks, rate limiting, audit logs, 18 D1 migrations, privacy export/delete flows, and 19 Vitest test files.',
     ],
     tech: ['TypeScript', 'React', 'Node.js', 'TanStack Router', 'Tailwind CSS', 'REST APIs', 'Git', 'CI/CD'],
   },
@@ -65,10 +65,10 @@ const projectCards = [
     href: 'https://github.com/isthisjason/cashflowgo',
     hrefLabel: 'github.com/isthisjason/cashflowgo',
     description:
-      'Dockerized and deployed a full-stack Django and React finance app to AWS.',
+      'A full-stack personal finance app for authentication, dashboard summaries, transaction tracking, budgeting, subscriptions, and reports.',
     highlights: [
-      'Used ECS/Fargate, RDS, S3, and CloudFront to create a production-ready system with secure session authentication.',
-      'Designed a PostgreSQL schema for transactions, budgets, and subscriptions with authenticated REST APIs, CI/CD pipelines, and automated tests.',
+      'Implemented 3 Django apps, 19 URL patterns, and 34 database migrations for authenticated finance workflows.',
+      'Designed profile-aware relational models with uniqueness constraints, transaction-hash deduplication, reminders, and CSV reports.',
     ],
     tech: ['React', 'TypeScript', 'Python', 'Django', 'PostgreSQL', 'AWS ECS/Fargate', 'S3', 'CloudFront', 'RDS', 'Docker', 'REST APIs'],
   },
@@ -98,10 +98,11 @@ const workExperience = [
 ]
 
 const skillGroups = [
-  { label: 'Frontend', items: ['React', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'TanStack Router', 'Responsive Design', 'Vitest'] },
-  { label: 'Backend / APIs', items: ['Java', 'Spring Boot', 'Node.js', 'Django', 'FastAPI', 'Python', 'RESTful API Design', 'Microservices', 'JPA', 'Flyway', 'CSRF/CORS Hardening', 'Session Auth', 'Rate Limiting', 'PostgreSQL', 'SQL'] },
-  { label: 'Cloud / Infrastructure', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'ALB', 'Docker', 'CI/CD Pipelines', 'Git', 'GitHub', 'Linux', 'Automated Testing', 'Agile/Scrum', 'pytest'] },
-  { label: 'AI / Dev Tools', items: ['Anthropic Claude API', 'OpenAI API', 'RAG Pipelines', 'PyTorch', 'Prompt Design', 'Claude Code', 'Codex'] },
+  { label: 'Languages', items: ['Java', 'Python', 'TypeScript', 'JavaScript (ES6+)', 'SQL', 'HTML5', 'CSS3'] },
+  { label: 'Frontend', items: ['React', 'TanStack Start', 'TanStack Router', 'Tailwind CSS', 'Shadow DOM', 'Responsive Design'] },
+  { label: 'Backend and APIs', items: ['Spring Boot', 'FastAPI', 'Django REST Framework', 'Node.js', 'REST APIs', 'PostgreSQL', 'Cloudflare D1', 'Auth', 'Rate Limiting'] },
+  { label: 'Cloud and Dev Tools', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'ALB', 'Cloudflare Workers/R2', 'Docker', 'CI/CD', 'Git', 'Linux', 'Vitest', 'Biome'] },
+  { label: 'AI and ML', items: ['PyTorch', 'OpenAI API', 'RAG Pipelines', 'Prompt Engineering', 'Codex'] },
 ]
 
 export function HomePage() {
@@ -465,7 +466,7 @@ export function HomePage() {
             <p className="theme-copy section-kicker mb-6 text-xs font-semibold tracking-[0.25em] uppercase">
               04 / Technical Skills
             </p>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {skillGroups.map(({ label, items }, index) => (
                 <div key={label} data-reveal data-reveal-delay={index * 55} className="reveal-card">
                   <h3 className="theme-copy section-kicker mb-3 text-xs font-semibold tracking-[0.18em] uppercase">
