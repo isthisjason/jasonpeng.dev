@@ -6,11 +6,14 @@ describe('HomePage', () => {
   it('exposes the current homepage hero and featured projects', () => {
     expect(heroHeading).toBe("Hi, I'm Jason.")
     expect(projectCards.map((project) => project.title)).toEqual([
+      'Weave',
+      'Prairie Amber Cattery',
+      '2D Action RPG',
       'SignalAttention',
       'Portfolio LLM Assistant',
-      'Prairie Amber Cattery',
       'CashFlowGo',
     ])
+    expect(projectCards.find((project) => project.title === 'SignalAttention')?.eyebrow).toBe('May 2026 to Sep 2026')
     expect(projectCards.find((project) => project.title === 'Portfolio LLM Assistant')?.eyebrow).toBe('Apr 2026')
     expect(projectCards.find((project) => project.title === 'Portfolio LLM Assistant')?.href).toBe('https://github.com/isthisjason/portfolio-chatbot')
     expect(projectCards.find((project) => project.title === 'CashFlowGo')?.href).toBe('https://github.com/isthisjason/cashflowgo')
