@@ -1,15 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, ExternalLink, Menu, X } from 'lucide-react'
 
-const sectionGlows: Record<string, { x: string; y: string; color: string }> = {
-  top:        { x: '75%', y: '10%', color: 'var(--scroll-glow-1)' },
-  about:      { x: '15%', y: '30%', color: 'var(--scroll-glow-2)' },
-  projects:   { x: '80%', y: '50%', color: 'var(--scroll-glow-3)' },
-  experience: { x: '20%', y: '60%', color: 'var(--scroll-glow-1)' },
-  skills:     { x: '70%', y: '70%', color: 'var(--scroll-glow-2)' },
-  contact:    { x: '40%', y: '85%', color: 'var(--scroll-glow-1)' },
-}
-
 function openChatbot() {
   const host = document.getElementById('portfolio-chatbot-widget')
   const launcher = host?.shadowRoot?.querySelector<HTMLElement>('.pcw-launcher')
@@ -18,19 +9,66 @@ function openChatbot() {
 
 const heroHeading = "Hi, I'm Jason."
 
-const projectCards = [
+type ProjectCard = {
+  title: string
+  eyebrow: string
+  href?: string
+  hrefLabel?: string
+  demoAction?: () => void
+  description: string
+  highlights: string[]
+  tech: string[]
+}
+
+// Lead with the projects featured on the November 2026 résumé, followed by earlier work.
+const projectCards: ProjectCard[] = [
+  {
+    title: 'Weave',
+    eyebrow: 'Sep 2026 to Present',
+    description:
+      'An AI video production pipeline that generates short clips, maintains continuity across scenes, and assembles video and audio into longer sequences.',
+    highlights: [
+      'Built a preview and finishing workflow that reuses generated latents and conditioning to refine approved takes, with 2× latent upscaling and output up to 1536 × 1024 at 30 FPS.',
+      'Added prompt cards accessible to agents, revision history, and automated previews. Used caching, disk-backed processing, and memory limits to support longer runs on local hardware.',
+    ],
+    tech: ['Python', 'JavaScript', 'ComfyUI', 'MiniMax H3', 'PyTorch', 'REST APIs'],
+  },
+  {
+    title: 'Prairie Amber Cattery',
+    eyebrow: 'Mar 2026 to Present',
+    href: 'https://prairieambercattery.com',
+    hrefLabel: 'prairieambercattery.com',
+    description:
+      'A live business site that helps prospective customers find contact information and submit kitten applications.',
+    highlights: [
+      'Built and deployed the site on Cloudflare using a low-cost serverless setup.',
+      'Implemented role-based administration, session authentication, rate limiting, and audit logging for applications and site content.',
+    ],
+    tech: ['TypeScript', 'React', 'TanStack Start', 'Cloudflare Workers', 'D1', 'R2'],
+  },
+  {
+    title: '2D Action RPG',
+    eyebrow: 'Nov 2026 to Present',
+    description:
+      'A playable Godot prototype with five character classes, crafting, quests, and a vendor economy. Used written specs and code review to guide AI-assisted development.',
+    highlights: [
+      'Separated deterministic game rules from presentation and used automated tests and byte-identical replays to catch regressions. Documented a server-authoritative design for future multiplayer.',
+      'Profiled and fixed object leaks, exported Windows, Linux, and web builds, and maintained save compatibility through 12 chained migrations.',
+    ],
+    tech: ['Godot 4', 'GDScript', 'WebAssembly'],
+  },
   {
     title: 'SignalAttention',
-    eyebrow: 'May 2026 to Present',
+    eyebrow: 'May 2026 to Sep 2026',
     href: 'https://github.com/isthisjason/signal-attention',
     hrefLabel: 'github.com/isthisjason/signal-attention',
     description:
-      'A three-service full-stack ML research workbench for market-regime analysis, backtesting, paper-trading simulation, and audit-ready experimentation.',
+      'A three-service ML research workbench for comparing attention-based market regime analysis with rule-based baselines.',
     highlights: [
-      'Compared attention-based market-regime analysis against SMA and rule-based baselines with persisted backtests, replay workflows, and audit trails.',
-      'Added 150+ automated tests and an end-to-end smoke demo validating 20+ workflow steps across inference, backtesting, paper replay, model readiness, assistant proposals, and audit events.',
+      'Built persistent backtests and paper-trading simulations so experiments could be reviewed and replayed.',
+      'Added 150+ automated tests and an end-to-end smoke test covering 20+ workflow steps.',
     ],
-    tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Flyway', 'REST APIs', 'PyTorch', 'Vitest', 'pytest'],
+    tech: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'PyTorch', 'React', 'PostgreSQL', 'Docker'],
   },
   {
     title: 'Portfolio LLM Assistant',
@@ -45,19 +83,6 @@ const projectCards = [
       'Designed chat, events, and health endpoints with CORS allowlists, request validation, Turnstile support, rate limits, duplicate-message checks, provider fallbacks, and structured logging.',
     ],
     tech: ['Python', 'TypeScript', 'Anthropic Claude API', 'OpenAI API', 'Node.js', 'Cloudflare Workers', 'REST APIs', 'CI/CD'],
-  },
-  {
-    title: 'Prairie Amber Cattery',
-    eyebrow: 'Mar 2026 to Present',
-    href: 'https://prairieambercattery.com',
-    hrefLabel: 'prairieambercattery.com',
-    description:
-      'A production-oriented TanStack Start platform for applications, admin operations, content management, and secure owner workflows.',
-    highlights: [
-      'Built 38 routed pages/endpoints, including 16 API routes and 12 admin screens for applications, accounts, FAQs, traffic, audit logs, site content, and image management.',
-      'Hardened the app with role-based access, session auth, Turnstile checks, rate limiting, audit logs, 18 D1 migrations, privacy export/delete flows, and 19 Vitest test files.',
-    ],
-    tech: ['TypeScript', 'React', 'Node.js', 'TanStack Router', 'Tailwind CSS', 'REST APIs', 'Git', 'CI/CD'],
   },
   {
     title: 'CashFlowGo',
@@ -77,32 +102,31 @@ const projectCards = [
 const workExperience = [
   {
     title: 'Video Editor',
-    dates: 'Sept. 2018 – Dec. 2021',
+    dates: 'Sep 2018 – Dec 2021',
     company: 'Case Media',
     location: 'Calgary, AB',
     bullets: [
-      'Delivered video content for multiple clients while meeting tight deadlines with minimal supervision.',
-      'Enhanced storytelling impact through intentional sound design and visual composition.',
+      'Edited client videos and made creative decisions about visual style and sound design.',
+      'Coordinated multiple projects with clients and delivered edits under tight deadlines.',
     ],
   },
   {
     title: 'Associate',
-    dates: 'May 2017 – March 2020',
-    company: 'Walmart Inc',
+    dates: 'May 2017 – Mar 2020',
+    company: 'Walmart Inc.',
     location: 'Calgary, AB',
     bullets: [
-      'Served high volumes of customers daily, resolving inquiries efficiently to maintain a positive instore experience.',
-      'Onboarded and mentored new staff, improving team readiness and procedural consistency.',
+      'Helped customers on the sales floor, stocked shelves, and checked inventory counts.',
+      'Trained and mentored new associates during high-volume periods.',
     ],
   },
 ]
 
 const skillGroups = [
-  { label: 'Languages', items: ['Java', 'Python', 'TypeScript', 'JavaScript (ES6+)', 'SQL', 'HTML5', 'CSS3'] },
-  { label: 'Frontend', items: ['React', 'TanStack Start', 'TanStack Router', 'Tailwind CSS', 'Shadow DOM', 'Responsive Design'] },
-  { label: 'Backend and APIs', items: ['Spring Boot', 'FastAPI', 'Django REST Framework', 'Node.js', 'REST APIs', 'PostgreSQL', 'Cloudflare D1', 'Auth', 'Rate Limiting'] },
-  { label: 'Cloud and Dev Tools', items: ['AWS ECS/Fargate', 'ECR', 'S3', 'CloudFront', 'RDS', 'ALB', 'Cloudflare Workers/R2', 'Docker', 'CI/CD', 'Git', 'Linux', 'Vitest', 'Biome'] },
-  { label: 'AI and ML', items: ['PyTorch', 'OpenAI API', 'RAG Pipelines', 'Prompt Engineering', 'Codex'] },
+  { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'JavaScript', 'GDScript'] },
+  { label: 'Frameworks and Data', items: ['React', 'TanStack Start', 'Spring Boot', 'FastAPI', 'Django', 'PostgreSQL', 'Godot 4'] },
+  { label: 'Cloud and Tools', items: ['Cloudflare Workers', 'Cloudflare D1', 'Cloudflare R2', 'AWS', 'Docker', 'Git', 'CI/CD'] },
+  { label: 'AI Video and ML', items: ['ComfyUI', 'PyTorch'] },
 ]
 
 export function HomePage() {
@@ -152,26 +176,11 @@ export function HomePage() {
     return () => revealObserver.disconnect()
   }, [])
 
-  const glow = sectionGlows[activeSection] ?? sectionGlows['top']
-
   return (
     <>
       {/* ── SCROLL GLOW ─────────────────────────────────────── */}
-      <div aria-hidden="true" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
-        <div
-          style={{
-            position: 'absolute',
-            left: glow.x,
-            top: glow.y,
-            width: '700px',
-            height: '700px',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '50%',
-            background: glow.color,
-            filter: 'blur(120px)',
-            transition: 'left 1.4s ease, top 1.4s ease, background 1.4s ease',
-          }}
-        />
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="scroll-glow" data-section={activeSection} />
       </div>
 
       {/* ── NAV ─────────────────────────────────────────────── */}
@@ -322,8 +331,9 @@ export function HomePage() {
                 <p className="theme-copy text-lg text-on-surface">
                   Bachelor of Science in Computer Science
                 </p>
-                <p className="theme-copy text-sm text-on-surface-variant/70">
-                  GPA: 3.54
+                <p className="theme-copy text-sm text-on-surface-variant">
+                  GPA: 3.54 <span aria-hidden="true">·</span>{' '}
+                  <span className="font-medium">Graduated with Great Distinction</span>
                 </p>
               </div>
             </div>
@@ -337,7 +347,7 @@ export function HomePage() {
               02 / Projects
             </p>
 
-            <div className="grid gap-5 xl:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-2">
               {projectCards.map((project, index) => (
                 <article
                   key={project.title}
@@ -364,27 +374,18 @@ export function HomePage() {
                       >
                         Demo
                       </button>
-                    ) : project.demoHref ? (
-                      <a
-                        href={project.demoHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="button-reactive inline-flex min-h-[44px] cursor-pointer whitespace-nowrap rounded-md border border-primary/70 bg-primary px-3.5 py-2 text-sm font-semibold tracking-wide text-on-primary no-underline md:min-h-0 md:px-3 md:py-1 md:text-xs"
-                      >
-                        Demo
-                      </a>
                     ) : null}
                   </div>
 
                   {/* project link */}
-                  {project.hrefLabel ? (
+                  {project.href ? (
                     <a
                       href={project.href}
-                      target={project.href?.startsWith('http') ? '_blank' : undefined}
-                      rel={project.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-link mb-3 gap-1.5 text-sm text-on-surface-variant/45"
                     >
-                      {project.hrefLabel}
+                      {project.hrefLabel ?? project.href}
                       <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
                     </a>
                   ) : null}
@@ -466,7 +467,7 @@ export function HomePage() {
             <p className="theme-copy section-kicker mb-6 text-xs font-semibold tracking-[0.25em] uppercase">
               04 / Technical Skills
             </p>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {skillGroups.map(({ label, items }, index) => (
                 <div key={label} data-reveal data-reveal-delay={index * 55} className="reveal-card">
                   <h3 className="theme-copy section-kicker mb-3 text-xs font-semibold tracking-[0.18em] uppercase">

@@ -17,13 +17,13 @@ describe('theme UI configuration', () => {
     expect(projectCards.some((project) => project.title === 'Portfolio LLM Assistant')).toBe(true)
     expect(skillGroups.map((group) => group.label)).toEqual([
       'Languages',
-      'Frontend',
-      'Backend and APIs',
-      'Cloud and Dev Tools',
-      'AI and ML',
+      'Frameworks and Data',
+      'Cloud and Tools',
+      'AI Video and ML',
     ])
-    expect(skillGroups.find((group) => group.label === 'Languages')?.items).toEqual(expect.arrayContaining(['Java', 'Python', 'TypeScript']))
-    expect(skillGroups.find((group) => group.label === 'Backend and APIs')?.items).toEqual(expect.arrayContaining(['Spring Boot', 'FastAPI', 'Cloudflare D1']))
-    expect(skillGroups.flatMap((group) => group.items)).toEqual(expect.arrayContaining(['PyTorch', 'Vitest', 'Biome']))
+    expect(skillGroups.find((group) => group.label === 'Languages')?.items).toEqual(expect.arrayContaining(['Java', 'Python', 'TypeScript', 'GDScript']))
+    expect(skillGroups.find((group) => group.label === 'Frameworks and Data')?.items).toEqual(expect.arrayContaining(['Spring Boot', 'FastAPI', 'Godot 4']))
+    expect(skillGroups.find((group) => group.label === 'Cloud and Tools')?.items).toEqual(expect.arrayContaining(['Cloudflare D1', 'Cloudflare R2']))
+    expect(skillGroups.find((group) => group.label === 'AI Video and ML')?.items).toEqual(['ComfyUI', 'PyTorch'])
   })
 })
