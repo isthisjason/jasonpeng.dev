@@ -228,6 +228,7 @@ async function ensureTurnstileWidget() {
 
   state.turnstileWidgetId = window.turnstile.render(container, {
     sitekey: state.config.turnstileSiteKey,
+    action: "portfolio_chat",
     size: "compact",
     execution: "execute",
   });
