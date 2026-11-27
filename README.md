@@ -11,7 +11,9 @@ This portfolio brings together my projects, experience, technical skills, and re
 ## Development
 
 ```bash
-npm install
+nvm install
+nvm use
+npm ci
 npm run dev
 ```
 

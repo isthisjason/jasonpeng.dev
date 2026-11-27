@@ -4,13 +4,15 @@ import type { ThemeMode } from './ThemeToggle'
 const CHATBOT_SCRIPT_ID = 'portfolio-chatbot-widget-script'
 const CHATBOT_GLOBAL = 'PortfolioChatbotWidget'
 const LOCAL_WIDGET_URL = '/widget.js'
+const DEV_API_URL = 'http://127.0.0.1:8787'
+const PROD_API_URL = 'https://chatbot-assistant-api.shuangzp.workers.dev'
 const DEV_WIDGET_ORIGINS = new Set(['http://127.0.0.1:4173', 'http://localhost:4173'])
 const PROD_WIDGET_ORIGINS = new Set([
   'https://jasonpengdevsite.shuangzp.workers.dev',
 ])
 const DEV_API_ORIGINS = new Set(['http://127.0.0.1:8787', 'http://localhost:8787'])
 const PROD_API_ORIGINS = new Set([
-  'https://chatbot-assistant-api.shuangzp.workers.dev',
+  PROD_API_URL,
   'https://chatbot-assistant-api-preview.shuangzp.workers.dev',
 ])
 
@@ -45,7 +47,7 @@ function getWidgetScriptUrl() {
 function getApiBaseUrl() {
   return (
     import.meta.env.VITE_CHATBOT_API_BASE_URL ||
-    'http://127.0.0.1:8787'
+    (import.meta.env.DEV ? DEV_API_URL : PROD_API_URL)
   )
 }
 
@@ -63,18 +65,21 @@ function resolveTrustedUrl(
 
   try {
     const parsed = new URL(candidate, window.location.origin)
-    const isLocalhost = parsed.hostname === '127.0.0.1' || parsed.hostname === 'localhost'
+    const isLocalDev = import.meta.env.DEV &&
+      (parsed.hostname === '127.0.0.1' || parsed.hostname === 'localhost')
     const isAllowedOrigin =
       parsed.origin === window.location.origin || allowedOrigins.has(parsed.origin)
     const hasAllowedProtocol =
-      parsed.protocol === 'https:' || (parsed.protocol === 'http:' && isLocalhost)
+      parsed.protocol === 'https:' || (parsed.protocol === 'http:' && isLocalDev)
 
     if (!isAllowedOrigin || !hasAllowedProtocol) {
       throw new Error('untrusted origin or protocol')
     }
 
-    if (label === 'widget' && !parsed.pathname.endsWith('.js')) {
-      throw new Error('widget URL must end with .js')
+    // Match the known widget entry points so another script on a trusted origin is rejected.
+    if (label === 'widget' && parsed.pathname !== LOCAL_WIDGET_URL &&
+      !(isLocalDev && parsed.pathname === '/dist/widget.js')) {
+      throw new Error('untrusted widget path')
     }
 
     return parsed.toString()
@@ -90,7 +95,7 @@ function resolveTrustedUrl(
 
 function getTrustedWidgetScriptUrl() {
   const allowedOrigins = new Set([
-    ...DEV_WIDGET_ORIGINS,
+    ...(import.meta.env.DEV ? DEV_WIDGET_ORIGINS : []),
     ...PROD_WIDGET_ORIGINS,
   ])
   return resolveTrustedUrl(
@@ -103,14 +108,10 @@ function getTrustedWidgetScriptUrl() {
 
 function getTrustedApiBaseUrl() {
   const allowedOrigins = new Set([
-    ...DEV_API_ORIGINS,
+    ...(import.meta.env.DEV ? DEV_API_ORIGINS : []),
     ...PROD_API_ORIGINS,
   ])
-  const isLocalHost =
-    window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
-  const fallback = isLocalHost
-    ? 'http://127.0.0.1:8787'
-    : 'https://chatbot-assistant-api.shuangzp.workers.dev'
+  const fallback = import.meta.env.DEV ? DEV_API_URL : PROD_API_URL
   const trusted = resolveTrustedUrl(
     getApiBaseUrl(),
     fallback,
