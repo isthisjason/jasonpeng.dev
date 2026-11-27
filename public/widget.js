@@ -189,6 +189,8 @@ function ensureTurnstileApiLoaded() {
     }
 
     const script = document.createElement("script");
+    const nonce = document.querySelector('meta[property="csp-nonce"]')?.content;
+    if (nonce) script.nonce = nonce;
     script.id = TURNSTILE_SCRIPT_ID;
     script.src = TURNSTILE_SCRIPT_SRC;
     script.async = true;
@@ -680,7 +682,6 @@ function attachEventHandlers() {
 
 function createMarkup(config) {
   return `
-    <style>${STYLE_TEXT}</style>
     <div class="pcw-root" data-theme="${escapeHtml(config.theme)}">
       <div
         id="pcw-panel"
@@ -814,6 +815,12 @@ function mountWidget(overrides = {}) {
 
   const shadowRoot = host.attachShadow({ mode: "open" });
   shadowRoot.innerHTML = createMarkup(config);
+  // Assign the document nonce before connecting the stylesheet to the page.
+  const style = document.createElement("style");
+  const nonce = document.querySelector('meta[property="csp-nonce"]')?.content;
+  if (nonce) style.nonce = nonce;
+  style.textContent = STYLE_TEXT;
+  shadowRoot.prepend(style);
   document.body.append(host);
 
   state.mounted = true;

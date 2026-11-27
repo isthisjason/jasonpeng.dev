@@ -1,15 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, ExternalLink, Menu, X } from 'lucide-react'
 
-const sectionGlows: Record<string, { x: string; y: string; color: string }> = {
-  top:        { x: '75%', y: '10%', color: 'var(--scroll-glow-1)' },
-  about:      { x: '15%', y: '30%', color: 'var(--scroll-glow-2)' },
-  projects:   { x: '80%', y: '50%', color: 'var(--scroll-glow-3)' },
-  experience: { x: '20%', y: '60%', color: 'var(--scroll-glow-1)' },
-  skills:     { x: '70%', y: '70%', color: 'var(--scroll-glow-2)' },
-  contact:    { x: '40%', y: '85%', color: 'var(--scroll-glow-1)' },
-}
-
 function openChatbot() {
   const host = document.getElementById('portfolio-chatbot-widget')
   const launcher = host?.shadowRoot?.querySelector<HTMLElement>('.pcw-launcher')
@@ -185,26 +176,11 @@ export function HomePage() {
     return () => revealObserver.disconnect()
   }, [])
 
-  const glow = sectionGlows[activeSection] ?? sectionGlows['top']
-
   return (
     <>
       {/* ── SCROLL GLOW ─────────────────────────────────────── */}
-      <div aria-hidden="true" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
-        <div
-          style={{
-            position: 'absolute',
-            left: glow.x,
-            top: glow.y,
-            width: '700px',
-            height: '700px',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '50%',
-            background: glow.color,
-            filter: 'blur(120px)',
-            transition: 'left 1.4s ease, top 1.4s ease, background 1.4s ease',
-          }}
-        />
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="scroll-glow" data-section={activeSection} />
       </div>
 
       {/* ── NAV ─────────────────────────────────────────────── */}

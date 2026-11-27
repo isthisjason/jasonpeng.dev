@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+.scroll-glow {
+  position: absolute;
+  left: 75%;
+  top: 10%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--scroll-glow-1);
+  filter: blur(120px);
+  transition: left 1.4s ease, top 1.4s ease, background 1.4s ease;
+}
+
+.scroll-glow[data-section='about'] { left: 15%; top: 30%; background: var(--scroll-glow-2); }
+.scroll-glow[data-section='projects'] { left: 80%; top: 50%; background: var(--scroll-glow-3); }
+.scroll-glow[data-section='experience'] { left: 20%; top: 60%; }
+.scroll-glow[data-section='skills'] { left: 70%; top: 70%; background: var(--scroll-glow-2); }
+.scroll-glow[data-section='contact'] { left: 40%; top: 85%; }
+
+.theme-toggle-button {
+  position: fixed;
+  left: max(1.25rem, env(safe-area-inset-left));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
 @theme {
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-headline: "Archivo", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
